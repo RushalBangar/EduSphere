@@ -1,0 +1,74 @@
+What is the primary function of a Smart Home system?,"Connecting everyday devices to the internet for remote monitoring, control, and automation."
+How can a user interact with a Smart Home system besides using a dedicated app?,Through voice commands using virtual assistants like Google Assistant or Alexa.
+"In a Smart Home block diagram, what serves as the central control unit?","A WiFi-Enabled Microcontroller (e.g., ESP8266 or ESP32)."
+What is the specific role of an SPDT Relay in a home automation circuit?,It acts as an electromechanical switch separating low-voltage logic from high-voltage power circuits.
+How does a Smart Home system typically achieve energy efficiency?,By monitoring usage and automatically turning off unused appliances through scheduling.
+Identify one significant limitation of Smart Home systems regarding network access.,Dependency on a constant internet connection for control and automation.
+What is 'inter-device communication' in the context of a Smart Home?,"The ability of devices to interact with each other, such as a motion sensor triggering a light."
+Define 'IoT in Agriculture'.,"The integration of sensors, connectivity, and analytics to enhance farming efficiency and productivity."
+What does a moisture sensor measure in an automated farming system?,Soil moisture levels to determine if irrigation is required.
+"In an IoT agriculture setup, what is the function of the Water Pump actuator?",To automatically turn irrigation on or off based on signals from the microcontroller.
+What is the purpose of a GSM Module in smart farming?,To send SMS or call alerts regarding farm conditions directly to the farmer's mobile device.
+How does IoT support 'Precision Agriculture'?,By applying the right treatment in the right amount at the right time using data-driven decisions.
+What is a common infrastructure challenge for IoT deployment in rural agricultural areas?,Limited internet or mobile network coverage.
+"In the provided IoT Healthcare diagram, which sensor is responsible for measuring heart rate?",The Heartbeat Sensor.
+Term: SpO2 Sensor,Definition: A sensor used in healthcare monitoring to measure blood oxygen saturation levels.
+How does Remote Patient Monitoring (RPM) benefit chronic disease management?,It allows continuous vital sign tracking without requiring frequent hospital visits.
+What is the role of the Wi-Fi Module in an IoT healthcare system?,To provide wireless communication for transmitting real-time patient data to the cloud.
+How do 'Smart Pillboxes' assist in healthcare?,By reminding patients to take medication and alerting caregivers if doses are missed.
+What is a major data-related challenge for IoT in healthcare systems?,Ensuring data privacy and security for sensitive health information against cyberattacks.
+Concept: Wearable Devices,"Definition: Small, smart electronic gadgets worn on the body equipped with sensors for real-time tracking."
+Which unit in a wearable device architecture contains the accelerometer and gyroscope?,The Sensing Unit.
+What is the role of the 'Elaboration Unit' in a wearable device?,It is the microcontroller that processes sensor data and manages data storage or transmission.
+Which communication interface is typically used between a wearable's Sensing Unit and the Microcontroller?,I2C (Inter-Integrated Circuit).
+What is the function of the Transmission Unit in wearable technology?,To wirelessly send processed data to external devices like smartphones using Bluetooth.
+The storage unit in a wearable device often utilizes an _____ card for local data backup.,SD
+List two common types of 'Hearables'.,Smart earbuds with health tracking or voice assistant features like AirPods Pro or Jabra Elite.
+What is the primary power-related challenge for wearable IoT devices?,Limited battery life due to the small size of the devices.
+How do wearable devices facilitate 'Telemedicine'?,"By transmitting real-time health data to providers, allowing for continuous remote monitoring."
+What does an LDR sensor detect in an environmental monitoring system?,Light intensity.
+"In environmental IoT, what is the specific use of a Flame Sensor?",Detecting the presence of fire or flames to trigger early warnings.
+Which environmental parameter is tracked using a $CO_{2}$ sensor?,The concentration of carbon dioxide in the air.
+What is the benefit of using IoT for natural disaster management?,"Providing early warning systems for floods, forest fires, and earthquakes through real-time monitoring."
+Why is 'Sensor Calibration' a challenge in environmental monitoring?,Harsh conditions like dust and humidity can degrade sensor performance over time.
+What does the acronym VANET stand for in transport and logistics?,Vehicular Ad Hoc Network.
+"In a VANET system, what is 'V2I communication'?",Vehicle-to-Infrastructure communication.
+How does 'Predictive Maintenance' save costs in logistics?,By detecting wear on vehicle parts early to prevent expensive unplanned downtime.
+What is the role of Cloud Storage in a transport IoT architecture?,Providing a centralized platform for real-time data sharing and scalable storage.
+How does IoT improve customer service in the logistics sector?,By providing real-time shipment tracking and accurate estimated times of arrival (ETAs).
+What is a major financial barrier for SMEs adopting IoT in logistics?,"High initial costs for sensors, communication networks, and cloud infrastructure."
+Define 'Smart City'.,An urban area using ICT and IoT to enhance the performance of services like energy and transportation.
+How does 'Smart Traffic Management' reduce city congestion?,By using sensors for real-time traffic monitoring and dynamic signal control.
+What is the function of 'Smart Bins' in waste management?,Sensors notify collection services when bins are full to optimize collection routes.
+"In a Smart City, what is the 'Control Center' responsible for?","Planning, management, and forecasting based on real-time data from city services."
+The City Operation System handles _____ data for storage/analysis and Open Data for transparency.,Big
+What is the role of 'City Governance' in the smart city block diagram?,Acting as the central authority that uses insights from the Control Center to manage urban services.
+How do 'Smart Energy Grids' benefit a city's utilities?,By monitoring consumption patterns to allow efficient energy distribution and reduce outages.
+What is 'E-Governance' in the context of a smart city?,Platforms where citizens can report issues and access government services digitally.
+How does IoT improve the maintenance of city infrastructure like bridges or roads?,Embedded sensors detect wear and potential failures to allow for proactive repairs.
+What component in a Smart Home acts as an interface between the microcontroller and a 230V device?,The SPDT Relay.
+"In agriculture IoT, what is the role of the 'Relay'?",Switching the power supply to actuators like water pumps based on microcontroller logic.
+Which sensor would be used to detect animal intrusions in a smart farm?,Sound and Motion Sensor.
+What is the primary purpose of 'Real-Time Monitoring' in smart healthcare?,Enabling continuous care and rapid intervention without requiring patient physical presence.
+Identify one benefit of 'Smart Hospitals'.,Increased operational efficiency through real-time tracking of equipment and automated check-ins.
+Which unit in a wearable device uses the UART interface?,The Transmission Unit (Bluetooth Module).
+What does a Magnetometer measure in a wearable Sensing Unit?,Direction or orientation relative to the Earth's magnetic field.
+What is the function of 'Smart Clothing' in medical rehabilitation?,"Tracking body movement, temperature, or posture using embedded sensors."
+"In environmental monitoring, why are Raspberry Pi units often used?",They act as processing nodes to collect sensor data and transmit it over the internet.
+How does IoT in transport help achieve sustainability goals?,By tracking fuel usage and idle time to identify opportunities to reduce carbon emissions.
+What is 'Interoperability' as a challenge in IoT?,The difficulty of getting devices from different brands or platforms to communicate seamlessly.
+"In the Smart City model, how do citizens interact with the city operation system?",Through mobile applications via the City Apps Market.
+What is the primary advantage of 'Smart Public Lighting'?,Adaptive streetlights that respond to movement or ambient light to save energy.
+What is a 'Hearable'?,An ear-worn wearable device with smart features like health tracking or translation.
+Identify the main purpose of a 'Vibration Sensor' in environmental monitoring.,Sensing ground or structural vibrations to detect potential geological or structural issues.
+"In the context of Smart Homes, what is 'Movie Mode' an example of?",A customized scene with specific settings for lighting and temperature.
+What is 'Asset Tracking' in logistics IoT?,Live monitoring of vehicles and cargo to enhance inventory management and reduce theft.
+How does IoT assist the elderly in a healthcare context?,By monitoring mobility and activity levels and sending alerts to caregivers in emergencies.
+What is a 'Smart Grid'?,An IoT-enabled energy network that monitors consumption patterns for efficient distribution.
+"In wearable architecture, which interface connects the Power Management Unit to the Microcontroller?",GPIO (General Purpose Input/Output).
+What is 'Open Data' in a smart city operation system?,Data shared with citizens and third parties to promote transparency and innovation.
+Name one disadvantage of Smart Home systems related to data.,Vulnerability to hacking and misuse of data if not properly encrypted.
+How does IoT in agriculture reduce labor costs?,"By automating tasks like irrigation, spraying, and constant monitoring."
+What is the function of an Arduino Board in an IoT system?,It acts as a processing layer that collects sensor data and makes decisions based on programmed conditions.
+Why is 'Standardization' a concern for IoT in Environmental Monitoring?,A lack of universal standards leads to compatibility issues between different sensors and platforms.
+What benefit does 'Smart Infrastructure' provide for city property value?,It boosts the resale value and attractiveness of homes and buildings to modern buyers.

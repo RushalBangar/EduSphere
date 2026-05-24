@@ -1,0 +1,50 @@
+"M2M stands for Machine-to-Machine, which is defined as communication between devices without the need for _____.",human intervention
+What is the relationship between M2M communication and the Internet of Things (IoT)?,M2M is a key aspect of IoT that enables automation through device data exchange.
+How do sensors in smart city streetlights demonstrate M2M communication?,They communicate with each other to optimize energy consumption and detect faults.
+"In the context of healthcare, what is the primary purpose of M2M data transmission from wearable devices?",To monitor patient health and prevent diseases.
+What is the primary benefit of M2M communication in manufacturing processes?,It optimizes production and reduces machine downtime.
+Name three short-range communication technologies typically used in an M2M Area Network.,"Zigbee, Bluetooth, and Wi-Fi."
+What are three common types of data formats exchanged between machines in M2M systems?,"Sensor data, location data, and machine status information."
+M2M solutions typically allow communication between devices of the _____ type.,same
+What are the three main objectives for deploying M2M in industrial or enterprise settings?,"To achieve productivity gains, reduce costs, and increase safety/security."
+"In enterprise M2M scenarios, what is the specific focus of applications like vending machines or point-of-sale terminals?",Connectivity of remote machine-type devices.
+What are the three primary domains that constitute a typical M2M system solution?,"M2M Domain, Network Domain, and Application Domain."
+What is the function of 'Embedded Nodes' within the M2M Domain?,They are smart devices that collect data from the environment or perform control actions.
+How is an 'M2M Area Network' defined within the M2M architecture?,A local network connecting embedded devices using short-range technologies.
+What component acts as the bridge between the M2M Area Network and the external communication infrastructure?,M2M Gateway
+What is the primary role of the Network Domain in M2M communication?,Providing infrastructure to transmit data from gateways to backend servers or cloud platforms.
+Identify three wireless technology options utilized in the Network Domain of M2M architecture.,"3G/4G/5G cellular, LPWAN (NB-IoT), and Satellite."
+What are the key performance requirements for the M2M Network Domain?,"Low latency, high availability, and support for large numbers of simultaneous connections."
+Which M2M domain hosts the infrastructure used for data analytics and user-facing dashboards?,Application Domain
+What is the role of the Back-End Server in the Application Domain?,"It receives data from gateways and performs storage, processing, and decision-making."
+What allows users to remotely interact with an M2M system and set device parameters?,Application Interfaces
+Function: Protocol Translation (M2M Gateway),The gateway translates between different communication protocols used by local devices and the broader network.
+How does an M2M Gateway perform 'Data Aggregation'?,By collecting data from multiple devices and forwarding it to a central location for analysis.
+What security features does an M2M Gateway typically provide for transmitted data?,Encryption and authentication.
+"In gateway architecture, how does each physical node in an M2M area network appear to external networks?",As a virtualized node.
+What is the 'Native Protocol' in the context of an M2M Gateway's virtual node?,The specific non-IP communication protocol used by the physical M2M device.
+What is the main goal of M2M Gateway Architecture regarding network compatibility?,To connect non-IP-based devices to IP-based networks like the Internet.
+List four examples of non-IP-based protocols used by M2M nodes.,"ZigBee, Bluetooth, ModBus, and Z-Wave."
+What is the purpose of 'Virtual Node Mapping' within an M2M gateway?,To enable the gateway to manage and monitor each physical device independently.
+Which module within the M2M Gateway ensures proper decoding and parsing of raw data from M2M nodes?,Native Protocol Handler
+"The Protocol Translation Module in a gateway translates non-IP data into IP-compatible formats like HTTP, MQTT, or _____.",CoAP (or RESTful APIs)
+What is the primary function of the 'Proxy Module' in an M2M gateway?,It manages communication sessions and security policies on behalf of physical devices.
+How does the Proxy Module assist resource-constrained M2M devices?,"It offloads tasks like authentication, access control, and retry logic."
+"Which module determines the final destination (e.g., cloud service or enterprise server) of processed M2M data?",IP Routing Module
+"In M2M applications, what term describes connected cars used for safety, security, and infotainment?",Telematics
+What is the primary focus of 'Metering' applications in the electricity utility sector?,Remote meter management and data collection for energy consumption.
+What differentiates 'Fleet Management' from general asset monitoring in M2M systems?,"It specifically tracks vehicle positioning, fuel consumption, and the security of goods."
+How do M2M systems improve inventory management in vending machines?,"Machines signal when they need restocking, reducing manual intervention."
+Define 'Predictive Maintenance' in the context of Industrial M2M.,Analyzing sensor data to predict equipment failure before it occurs to reduce downtime.
+What variables do M2M systems monitor to achieve 'Process Optimization' in manufacturing?,"Parameters such as temperature, pressure, and flow rates."
+How does M2M 'Smart Metering' benefit grid management?,"By automatically transmitting usage data for electricity, water, and gas to facilitate efficient billing."
+"In logistics, how does M2M communication enhance supply chain visibility?",By tracking goods and materials from the warehouse to the distribution center.
+What is the role of M2M in 'Medication Management'?,Smart dispensers automatically dispense medication based on schedules to improve adherence.
+How does M2M technology improve the efficiency of 'Medical Device Tracking'?,By monitoring the location and status of equipment like ventilators and monitors.
+"In a smart city, how do sensors optimize 'Waste Management'?",Garbage bins signal when they are full to optimize collection routes.
+What is the mechanism behind M2M 'Smart Lighting' energy savings?,Streetlights adjust brightness based on real-time pedestrian and vehicle activity.
+What is a major advantage of 'Interoperability' in IoT and M2M systems?,The ability to add devices from different vendors without compatibility issues.
+What M2M segment includes Automated Teller Machines (ATM) and Point of Sales (POS) terminals?,Financial / Retail services (Market segment).
+Which module within the Gateway workflow handles session persistence and data caching?,Proxy Module
+M2M Area Networks are primarily optimized for device-to-device communication and _____.,energy efficiency
+What characterizes the communication between M2M nodes and the M2M gateway regarding protocols?,It uses protocols that are native (naive) to the specific M2M area network.

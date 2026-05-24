@@ -1,0 +1,63 @@
+What does the acronym MQTT stand for?,Message Queuing Telemetry Transport
+MQTT is specifically designed for environments with limited bandwidth and _____.,high latency
+What messaging pattern does the MQTT protocol operate on?,Publish-subscribe model
+"In MQTT architecture, what is the name of the central server that receives and delivers messages?",Broker
+Which level of MQTT Quality of Service (QoS) offers 'at most once' delivery with no guarantee?,QoS 0
+Which level of MQTT Quality of Service (QoS) guarantees 'exactly once' delivery?,QoS 2
+MQTT Quality of Service (QoS) level 1 guarantees that a message will be delivered _____.,at least once
+Concept: Last Will and Testament (LWT),Definition: An MQTT feature where the broker sends a warning message if a device goes offline suddenly.
+How do MQTT persistent sessions benefit a device that has disconnected for a short period?,The device can reconnect and pick up where it left off without missing messages.
+"In the MQTT pub-sub model, which party sends messages to specific topics without knowing the recipients?",Publishers
+What process in MQTT separates senders from receivers to ensure message distribution without direct interaction?,Decoupling
+What is the header size of an MQTT message?,2 bytes
+What is one major disadvantage of using MQTT for media-heavy applications?,It is not designed to handle large file transfers like images or videos.
+What does the acronym CoAP stand for?,Constrained Application Protocol
+CoAP is a web protocol designed to run over which transport layer protocol?,User Datagram Protocol (UDP)
+What security protocol is used to protect CoAP transmissions?,Datagram Transport Layer Security (DTLS)
+CoAP is based on which software architectural style?,REST (Representational State Transfer)
+"What are the four primary methods used by CoAP, similar to HTTP?","GET, PUT, POST, and DELETE"
+CoAP provides two main layers: the message layer and the _____ layer.,request-response
+"In the CoAP protocol stack, what is the function of 6LoWPAN?",It compresses IPv6 headers for use over low-power wireless personal area networks.
+What is the fixed size of a CoAP message header?,4 bytes
+"In the CoAP message format, what is the size of the 'Version' field?",2 bits
+"In the CoAP message format, how many different message 'Types' are there?","Four (Confirmable, Non-confirmable, Acknowledgement, Reset)"
+Which CoAP message field is used to match a specific response with its corresponding request?,Token
+What is the primary function of the 'Message ID' field in a CoAP header?,To detect message duplication and identify message types.
+How does the communication model of MQTT differ from that of CoAP?,"MQTT uses a many-to-many model, while CoAP uses a one-to-one (1:1) model."
+"While MQTT only uses asynchronous messaging, CoAP supports both asynchronous and _____ modes.",synchronous
+What does the acronym HTTP stand for?,Hypertext Transfer Protocol
+"Which HTTP method is used to submit data to be processed by a specified resource, such as a form submission?",POST
+What is the difference between the HTTP PUT and PATCH methods?,"PUT replaces the entire resource, while PATCH performs partial modifications."
+Which HTTP method retrieves only the response headers without the full content?,HEAD
+"During the working of HTTP, which system returns the IP address corresponding to a typed URL?",Domain Name Server (DNS)
+HTTP is described as _____ because the server does not retain information about previous interactions.,stateless
+"Unlike the binary format used by CoAP and MQTT, HTTP messages are _____.",text-based
+Why is HTTP considered to have 'poor' suitability for constrained IoT devices compared to MQTT or CoAP?,It has high overhead and low power efficiency.
+"When selecting an IoT protocol, why might Zigbee or BLE be chosen over Wi-Fi for a battery-powered sensor?",They have much lower power consumption.
+What network topology allows IoT devices to relay data among themselves to enhance coverage and reliability?,Mesh network
+What does the acronym BLE stand for?,Bluetooth Low Energy
+BLE typically operates in which unlicensed frequency band?,$2.4\text{ GHz}$
+All BLE devices use which profile to provide commands for discovering information on a server?,GATT (Generic Attribute Profile)
+What is the typical communication range of BLE?,10–100 meters
+"In the BLE protocol stack, what provides the interface between the Host and the Controller?",HCI (Host to Controller Interface)
+Which layer of the BLE stack handles device discovery and connection-related services?,Generic Access Profile (GAP)
+Which BLE stack layer provides methods for device pairing and key distribution?,Security Manager (SMP)
+How many states are defined in the BLE Link Layer (LL)?,"Six (Standby, Advertising, Scanning, Initiating, Connection, Synchronization)"
+"BLE has _____ latency than Bluetooth Classic, making it better for quick-response applications.",shorter
+What does the acronym Li-Fi stand for?,Light Fidelity
+Li-Fi is a type of _____ Light Communication (VLC) system.,Visible
+What is the theoretical data communication speed that Li-Fi can reach?,$1\text{ Gbps}$
+What component is required on a device to receive Li-Fi signals and convert them to electrical current?,Photodiode
+"Unlike Wi-Fi, which uses radio waves, Li-Fi cannot penetrate _____.",walls
+What is the primary advantage of Li-Fi regarding electromagnetic interference?,It has no electromagnetic interference.
+"Compared to the 30-meter range of Wi-Fi, what is the typical working distance of Li-Fi?",About 10 meters
+"In BLE, which layer allows a device to expose specific pieces of data known as attributes?",Attribute Protocol (ATT)
+MQTT uses _____ as its transport layer protocol to ensure reliable byte-stream delivery.,Transmission Control Protocol (TCP)
+"Which IoT protocol natively supports resource discovery, unlike MQTT?",CoAP
+Under what condition is the MQTT 'Exactly Once' (QoS 2) level generally used?,"When the message is critical and must be received only once, despite being bandwidth-intensive."
+What is the primary disadvantage of the HTTP TRACE method?,It is rarely used due to security concerns.
+"In the BLE stack, which layer offers data encapsulation services to upper layers for logical end-to-end communication?",L2CAP (Logical Link Control & Adaptation Protocol)
+Li-Fi technology uses LED bulbs that _____ at a rate not noticeable to the human eye to transfer data.,flicker on and off
+What is the modulation scheme used by the BLE transmitter in the Physical Layer?,GFSK (Gaussian Frequency Shift Keying)
+"Which HTTP method is used to establish a tunnel to the server, often for SSL/TLS connections?",CONNECT
+CoAP is designed for Machine-to-Machine (M2M) applications like smart energy and _____.,building automation

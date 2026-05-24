@@ -387,7 +387,12 @@ const referenceSheets = {
     { title: "Unit 5: Exception Frameworks & Templates", file: "files/Unit 5 oop.png", desc: "Try-catch execution boundaries, customized exception throwing guidelines." }
   ],
   iot: [
-    { title: "IoT Protocol Reference Suite", file: "files/pointers.png", desc: "Sensors interfaces, MQTT brokers, and low-power communications overview.", isPlaceholder: true }
+    { title: "Chapter 1: M2M Communication Architecture", file: "files/m2m.png", desc: "Machine-to-Machine interface boundaries, system domains, and gateway maps." },
+    { title: "Chapter 2: IoT Communication Protocols", file: "files/Comm pro.png", desc: "Comparative suites of MQTT brokers, CoAP nodes, HTTP overhead, and mesh topologies." },
+    { title: "Chapter 3: Real-World IoT Applications", file: "files/appli iot.png", desc: "Detailed smart city grids, precision farming nodes, healthcare devices, and logistics chains." },
+    { title: "Unit 3: Sensors, Actuators & Embedded Systems", file: "files/Unit 3 iot.png", desc: "Interfacing controllers (Arduino/ESP32) with digital and analog sensors." },
+    { title: "Unit 4: Low-Power WAN & IoT Gateways", file: "files/Unit 4 iot.png", desc: "LoRaWAN architecture, Zigbee routing, and border gateway controllers." },
+    { title: "Unit 5: IoT Security Frameworks & Edge Nodes", file: "files/Unit 5 iot.png", desc: "End-to-end encryption protocols, secure bootstrapping, and edge analytics." }
   ]
 };
 
@@ -1421,7 +1426,10 @@ async function loadLocalCSVDecks() {
     { subject: "fds", chapterId: "fds-ch3", path: "files/queue.csv" },
     { subject: "oops", chapterId: "oops-ch1", path: "files/ploymorphism.csv" },
     { subject: "oops", chapterId: "oops-ch2", path: "files/inheritance.csv" },
-    { subject: "oops", chapterId: "oops-ch3", path: "files/template & stl.csv" }
+    { subject: "oops", chapterId: "oops-ch3", path: "files/template & stl.csv" },
+    { subject: "iot", chapterId: "iot-ch1", path: "files/m2m.csv" },
+    { subject: "iot", chapterId: "iot-ch2", path: "files/comm pro.csv" },
+    { subject: "iot", chapterId: "iot-ch3", path: "files/appli iot.csv" }
   ];
 
   for (const mapping of fileMappings) {
