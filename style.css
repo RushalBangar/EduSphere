@@ -503,19 +503,27 @@ main {
   flex-direction: column;
 }
 
-/* Screen visibility classes */
+/* Screen visibility classes with highly optimized GPU-accelerated keyframe animation */
 .screen {
   display: none;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 .screen.active {
   display: flex;
   flex-direction: column;
-  opacity: 1;
-  transform: translateY(0);
+  animation: screenReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes screenReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
@@ -1594,12 +1602,25 @@ body.dark-theme .ai-explain-drawer {
   border: 1px solid rgba(37, 99, 235, 0.1);
 }
 
+body.dark-theme .chat-bubble.user .bubble-content {
+  background: rgba(37, 99, 235, 0.2);
+  color: #93c5fd;
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
 .chat-bubble.assistant .bubble-content {
   background: #fcfcff;
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   border-top-left-radius: 4px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+}
+
+body.dark-theme .chat-bubble.assistant .bubble-content {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .bubble-content p {
@@ -1666,6 +1687,11 @@ body.dark-theme .ai-explain-drawer {
   background: #fcfcff;
 }
 
+body.dark-theme .drawer-footer {
+  background: var(--bg-secondary);
+  border-top-color: var(--border-color);
+}
+
 .chat-input-wrapper {
   display: flex;
   gap: 0.5rem;
@@ -1676,6 +1702,11 @@ body.dark-theme .ai-explain-drawer {
   align-items: center;
   transition: var(--transition-fast);
   box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+}
+
+body.dark-theme .chat-input-wrapper {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
 }
 
 .chat-input-wrapper:focus-within {
