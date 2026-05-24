@@ -1606,19 +1606,20 @@ function initBackgroundParticles() {
       this.x += this.speedX;
       this.y += this.speedY;
 
-      // Mouse interactive push
+      // Mouse interactive push — Optimized distance-squared check to avoid Math.sqrt
       if (mouse.x !== null && mouse.y !== null) {
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        const distSq = dx * dx + dy * dy;
+        const radSq = mouse.radius * mouse.radius;
         
-        if (distance < mouse.radius) {
-          const force = (mouse.radius - distance) / mouse.radius;
-          const directionX = dx / distance;
-          const directionY = dy / distance;
-          
-          this.x += directionX * force * 1.5;
-          this.y += directionY * force * 1.5;
+        if (distSq < radSq) {
+          const distance = Math.sqrt(distSq);
+          if (distance > 0) {
+            const force = (mouse.radius - distance) / mouse.radius;
+            this.x += (dx / distance) * force * 1.5;
+            this.y += (dy / distance) * force * 1.5;
+          }
         }
       }
 
@@ -1637,24 +1638,27 @@ function initBackgroundParticles() {
     }
   }
 
-  // Populate particles
-  const particleCount = Math.min(65, Math.floor((canvas.width * canvas.height) / 18000));
+  // Populate particles — Capped at 40 to prevent layout CPU bottlenecks
+  const particleCount = Math.min(40, Math.floor((canvas.width * canvas.height) / 22000));
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle());
   }
 
-  // Draw connections between close particles
+  // Draw connections between close particles — Highly optimized distance-squared filtering
   function drawConnections() {
     const isDark = document.body.classList.contains("dark-theme");
     const maxDistance = 110;
+    const maxDistanceSq = maxDistance * maxDistance;
     
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        const distSq = dx * dx + dy * dy;
 
-        if (distance < maxDistance) {
+        // Skip Math.sqrt calculation completely if the particles are not within connection range!
+        if (distSq < maxDistanceSq) {
+          const distance = Math.sqrt(distSq);
           // Fade connection based on distance
           const alpha = (1 - distance / maxDistance) * (isDark ? 0.08 : 0.05);
           ctx.beginPath();
