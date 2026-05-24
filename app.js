@@ -657,7 +657,7 @@ function renderReferenceSheets() {
     
     card.innerHTML = `
       <div class="reference-img-wrap ${placeholderClass}">
-        <img src="${imgSrc}" alt="${sheet.title}">
+        <img src="${imgSrc}" alt="${sheet.title}" width="320" height="180">
         <div class="reference-img-overlay">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           <span>Expand Reference Map</span>
@@ -666,7 +666,7 @@ function renderReferenceSheets() {
       <div class="reference-card-body">
         <div class="reference-card-header-row">
           <h4 class="reference-card-title">${sheet.title}</h4>
-          <a href="${imgSrc}" download="${sheet.title}.png" class="reference-download-btn" title="Download Reference Map">
+          <a href="${imgSrc}" download="${sheet.title}.png" class="reference-download-btn" title="Download Reference Map" aria-label="Download ${sheet.title} Reference Map">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/>
