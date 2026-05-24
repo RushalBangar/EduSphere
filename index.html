@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduSphere | AI-Powered 3D Study & Flashcard Workspace</title>
+  <meta name="description" content="Immersive 3D study portal featuring Fundamentals of Data Structures, Internet of Things, and Object-Oriented Programming flashcard decks. Powered by NotebookLM AI explains.">
+  <meta name="author" content="Rushal Bangar">
+  <meta name="keywords" content="flashcards, study, data structures, IoT, OOP, AI, EduSphere, 3D learning">
+  <meta name="theme-color" content="#7c3aed">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EduSphere AI">
+  <meta property="og:title" content="EduSphere | AI-Powered 3D Study &amp; Flashcard Workspace">
+  <meta property="og:description" content="Master Data Structures, IoT, and OOP with immersive 3D flashcards and an integrated AI explanation engine. Built by Rushal Bangar.">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="EduSphere AI — Intelligent 3D Flashcard Workspace">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@RushalBangar">
+  <meta name="twitter:creator" content="@RushalBangar">
+  <meta name="twitter:title" content="EduSphere | AI-Powered 3D Flashcard Workspace">
+  <meta name="twitter:description" content="Master Data Structures, IoT, and OOP with immersive 3D flashcards and an integrated AI explanation engine.">
+  <meta name="twitter:image" content="og-image.png">
+  <meta name="twitter:image:alt" content="EduSphere AI preview card">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Animated particle canvas background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Background decorative glowing backdrops -->
+  <div class="background-glows">
+    <div class="glow-purple"></div>
+    <div class="glow-cyan"></div>
+    <div class="glow-magenta"></div>
+    <div class="glow-dynamic" id="bg-dynamic-glow"></div>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Premium Navigation Bar -->
+    <header>
+      <div class="logo" id="header-logo">
+        <!-- Premium geometric E-monogram logo mark -->
+        <div class="logo-icon logo-icon-premium">
+          <svg class="premium-logo-svg" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#2563eb"/>
+              </linearGradient>
+              <linearGradient id="lg2" x1="34" y1="0" x2="0" y2="34" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#06b6d4"/>
+                <stop offset="100%" stop-color="#2563eb"/>
+              </linearGradient>
+              <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#0f0c1e" stop-opacity="1"/>
+              </radialGradient>
+            </defs>
+            <!-- Background with pulsing opacity -->
+            <rect width="34" height="34" rx="9" fill="url(#bgGlow)">
+              <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+            </rect>
+            <!-- E left vertical bar -->
+            <rect x="8" y="8" width="3.5" height="18" rx="1.75" fill="url(#lg1)"/>
+            <!-- E top arm -->
+            <rect x="8" y="8" width="12" height="3.5" rx="1.75" fill="url(#lg1)"/>
+            <!-- E middle arm — slides in/out subtly -->
+            <rect x="8" y="15.25" height="3.5" rx="1.75" fill="url(#lg2)">
+              <animate attributeName="width" values="9;13;9" dur="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+            </rect>
+            <!-- E bottom arm -->
+            <rect x="8" y="22.5" width="12" height="3.5" rx="1.75" fill="url(#lg1)"/>
+            <!-- Sphere accent — orbits the E center (15.75, 17) -->
+            <circle r="4" fill="url(#lg2)">
+              <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear">
+                <mpath href="#orbitPath"/>
+              </animateMotion>
+            </circle>
+            <!-- Shine dot follows sphere -->
+            <circle r="1.2" fill="white" opacity="0.3">
+              <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear">
+                <mpath href="#orbitPath"/>
+              </animateMotion>
+            </circle>
+            <!-- Invisible elliptical orbit path -->
+            <path id="orbitPath" d="M 25,10 A 10,8 0 1 1 24.9,10.001 Z" fill="none" stroke="none"/>
+          </svg>
+        </div>
+        <div class="logo-wordmark">
+          <span class="logo-text-main">EduSphere</span>
+          <span class="logo-text-badge">AI</span>
+        </div>
+      </div>
+      
+      <div class="nav-actions">
+        <!-- Premium Theme Toggle -->
+        <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+          <!-- Sun Icon -->
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <!-- Moon Icon -->
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none;"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+
+        <!-- Dynamic Statistics -->
+        <div class="stats-badge" id="nav-stats">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
+          <span id="nav-stats-count">75 Cards</span>
+        </div>
+        
+        <!-- Premium CSV Upload Action -->
+        <button class="csv-upload-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          Upload CSV Deck
+          <input type="file" id="csv-file-picker" accept=".csv">
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Screens Wrapper -->
+    <main>
+      
+      <!-- ==========================================================================
+           SCREEN 1: SUBJECT DASHBOARD
+           ========================================================================== -->
+      <section class="screen active" id="screen-subjects">
+        <div class="hero-section">
+          <div class="hero-tag">Intelligent Flashcards. Better Learning. Zero Hassle.</div>
+          <h1 class="hero-title">
+            <span class="slogan-conducts">AI CONDUCTS.</span><br>
+            <span class="slogan-learning">BETTER LEARNING.</span><br>
+            <span class="slogan-grades">BETTER GRADES.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Unlock the power of dynamic 3D study workflows. Choose a custom subject, experience immersive Y-axis flashcard flips, and study with EduSphere's integrated AI explanations.
+          </p>
+        </div>
+
+        <!-- 3D Card Selection Grid -->
+        <div class="subjects-grid" id="subjects-container">
+          <!-- IoT Card -->
+          <div class="subject-card iot" data-subject="iot">
+            <div class="subject-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.25A2.25 2.25 0 0 0 14.5 12.25v3.5A2.25 2.25 0 0 0 16.75 18H18M6 10H7.25A2.25 2.25 0 0 1 9.5 12.25v3.5A2.25 2.25 0 0 1 7.25 18H6M10 6h4M12 4v4M12 16v4M10 18h4"/></svg>
+            </div>
+            <h2 class="subject-title">Internet of Things</h2>
+            <p class="subject-desc">
+              Explore embedded networks, sensors, actuator clusters, wireless protocols (MQTT, CoAP), edge computing nodes, and advanced IoT security layers.
+            </p>
+            <div class="subject-meta">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
+                5 Chapters
+              </span>
+              <div class="arrow-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- FDS Card -->
+          <div class="subject-card fds" data-subject="fds">
+            <div class="subject-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h2 class="subject-title">Fundamentals of Data Structures</h2>
+            <p class="subject-desc">
+              Master the algorithmic foundations: dynamic arrays, linked structures, binary search trees, graph algorithms, search heuristics, and memory structures.
+            </p>
+            <div class="subject-meta">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
+                5 Chapters
+              </span>
+              <div class="arrow-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- OOPs Card -->
+          <div class="subject-card oops" data-subject="oops">
+            <div class="subject-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <h2 class="subject-title">Object-Oriented Programming</h2>
+            <p class="subject-desc">
+              Understand professional software patterns: encapsulation borders, dynamic polymorphism, inheritances, interfaces, and complex memory scopes.
+            </p>
+            <div class="subject-meta">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
+                5 Chapters
+              </span>
+              <div class="arrow-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elegant Premium Info Section to Make the Website Big and Visual -->
+        <div class="ecosystem-info-container">
+          <div class="info-section-header">
+            <span class="info-pretitle">The EduSphere Edge</span>
+            <h2 class="info-title">Next-Gen Intelligent Study Ecosystem</h2>
+            <p class="info-subtitle">Combine the structured simplicity of professional flashcards with the real-time reasoning of our advanced AI study assistant.</p>
+          </div>
+
+          <div class="info-features-grid">
+            <!-- Feature 1 -->
+            <div class="info-feature-card">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <h3 class="feature-card-title">Dynamic 3D Flashcard Engine</h3>
+              <p class="feature-card-desc">Interact with a fully-realized three-dimensional deck. Flip cards effortlessly along their Y-axis, mark cards as remembered, and track your retention metrics on a sleek dashboard.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="info-feature-card">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h3 class="feature-card-title">NotebookLM-Grade AI Workspace</h3>
+              <p class="feature-card-desc">Need a deeper explanation? Our integrated study assistant provides clear, context-aware breakdowns, sample code blocks, and answers all your subject queries on a responsive side-drawer.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="info-feature-card">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <h3 class="feature-card-title">Curated Academic Curriculums</h3>
+              <p class="feature-card-desc">Designed around modern computer science standards. Master complex topics across Internet of Things (IoT), Fundamentals of Data Structures (FDS), and Object Oriented Programming (OOP).</p>
+            </div>
+          </div>
+
+          <!-- Interactive Ecosystem Analytics Badge -->
+          <div class="ecosystem-analytics-section">
+            <div class="analytics-card">
+              <span class="analytics-number">100%</span>
+              <span class="analytics-label">Active Recall</span>
+            </div>
+            <div class="analytics-card">
+              <span class="analytics-number">3D</span>
+              <span class="analytics-label">Immersive UI</span>
+            </div>
+            <div class="analytics-card">
+              <span class="analytics-number">JSON</span>
+              <span class="analytics-label">Code Syntax</span>
+            </div>
+            <div class="analytics-card">
+              <span class="analytics-number">Local</span>
+              <span class="analytics-label">CSV Autoload</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================================================
+           SCREEN 2: CHAPTERS LIST
+           ========================================================================== -->
+      <section class="screen" id="screen-chapters">
+        <div class="back-nav" id="chapters-back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Subjects
+        </div>
+
+        <div class="subject-header-container">
+          <div>
+            <div class="hero-tag" id="chapters-subject-tag">Subject View</div>
+            <h1 class="subject-header-title" id="chapters-subject-title">Fundamentals of Data Structures</h1>
+          </div>
+          <div class="subject-stats-row">
+            <div class="subject-stat-item">
+              <span class="subject-stat-val" id="chapters-stat-total">5</span>
+              <span class="subject-stat-lbl">Chapters</span>
+            </div>
+            <div class="subject-stat-item">
+              <span class="subject-stat-val" id="chapters-stat-cards">25</span>
+              <span class="subject-stat-lbl">Study Cards</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapters List Grid -->
+        <div class="chapters-grid" id="chapters-list-container">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Dynamic Reference Sheets Section -->
+        <div class="reference-sheets-container">
+          <div class="reference-header">
+            <h2 class="reference-section-title">📚 Visual Study Reference Maps</h2>
+            <p class="reference-section-subtitle">High-fidelity syllabus cheat sheets and interactive concepts diagrams loaded from your course files folder.</p>
+          </div>
+          <div class="reference-grid" id="reference-sheets-grid">
+            <!-- Dynamically populated via JS depending on active subject -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SCREEN 3: FLASHCARD WORKSPACE (NotebookLM layout)
+           ========================================================================== -->
+      <section class="screen" id="screen-player">
+        <div class="player-layout">
+          
+          <!-- NotebookLM Player Header -->
+          <div class="player-header">
+            <div class="deck-meta">
+              <h2 class="deck-title" id="player-deck-title">C++ Flashcards</h2>
+              <span class="deck-source" id="player-deck-subtitle">Based on 1 source</span>
+            </div>
+            <div class="deck-actions">
+              <!-- Fullscreen Button -->
+              <button class="deck-action-btn" id="player-fullscreen-btn" title="Toggle Fullscreen">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
+              <!-- Close Workspace Button -->
+              <button class="deck-action-btn" id="player-close-btn" title="Close deck workspace">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Flashcard Container & Flip triggers -->
+          <div class="card-section">
+            <div class="card-instructions">Press "Space" to flip, "←" / "→" to navigate</div>
+            
+            <div class="card-container-3d" id="card-3d-wrapper">
+              <div class="flashcard" id="flashcard-element">
+                
+                <!-- Front Side -->
+                <div class="card-face front">
+                  <div class="card-top">
+                    <span class="card-index-indicator" id="card-count-indicator">1 / 5</span>
+                    <button class="card-menu-btn">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                    </button>
+                  </div>
+                  <h3 class="card-content-text" id="card-question-text">Loading question content...</h3>
+                  <div class="card-click-prompt">See answer</div>
+                </div>
+
+                <!-- Back Side -->
+                <div class="card-face back">
+                  <div class="card-top">
+                    <span class="card-index-indicator" id="card-count-indicator-back">1 / 5</span>
+                    <button class="card-menu-btn">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                    </button>
+                  </div>
+                  <h3 class="card-content-text" id="card-answer-text">Loading answer content...</h3>
+                  
+                  <div class="explain-btn-container">
+                    <button class="explain-deck-btn" id="player-explain-btn">
+                      <!-- Chat bubble icon -->
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      Explain
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Nav Circle Buttons and Counters -->
+            <div class="card-nav-controls">
+              <!-- Left arrow Navigation -->
+              <button class="nav-circle-btn" id="player-prev-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              </button>
+
+              <!-- Incorrect Tracker -->
+              <button class="score-circle-btn wrong" id="player-incorrect-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span id="player-score-incorrect">0</span>
+              </button>
+
+              <!-- Correct Tracker -->
+              <button class="score-circle-btn correct" id="player-correct-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span id="player-score-correct">0</span>
+              </button>
+
+              <!-- Right arrow Navigation -->
+              <button class="nav-circle-btn arrow-right" id="player-next-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Bottom Workspace Options -->
+          <div class="player-footer">
+            <div class="feedback-btn-group">
+              <button class="feedback-btn" id="player-thumbs-up">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                Good content
+              </button>
+              <button class="feedback-btn" id="player-thumbs-down">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm12-5h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"/></svg>
+                Bad content
+              </button>
+            </div>
+            
+            <div style="font-size: 0.8rem; color: var(--text-muted);">
+              EduSphere Study Engine can experience minor formatting anomalies; review complex layouts carefully.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           SCREEN 4: DECK COMPLETED SUMMARY VIEW
+           ========================================================================== -->
+      <section class="screen" id="screen-completed">
+        <div class="deck-completed-wrapper">
+          <div class="completed-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h1 class="completed-title">Deck Completed!</h1>
+          <p class="completed-subtitle" id="completed-deck-desc">
+            Phenomenal work! You have finished studying this deck. Here is your review breakdown:
+          </p>
+
+          <div class="score-summary-grid">
+            <div class="score-summary-card correct">
+              <span class="score-summary-val" id="completed-score-correct">0</span>
+              <span class="score-summary-lbl">Correct Reviews</span>
+            </div>
+            <div class="score-summary-card wrong">
+              <span class="score-summary-val" id="completed-score-incorrect">0</span>
+              <span class="score-summary-lbl">Incorrect / Don't Know</span>
+            </div>
+          </div>
+
+          <div class="completion-actions">
+            <button class="completion-btn restart" id="completed-restart-btn">Study Again</button>
+            <button class="completion-btn home" id="completed-home-btn">Choose Another Topic</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Premium Glassmorphic Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="footer-logo">
+            <div class="logo-icon-small">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 15h.01M16 15h.01"/></svg>
+            </div>
+            EduSphere
+          </div>
+          <p class="footer-text">© 2026 EduSphere AI. All rights reserved. Empowering modern interactive self-study.</p>
+        </div>
+        <div class="footer-right">
+          <div class="created-by">
+            Created with <span class="heart-pulse">❤️</span> by <span class="author-name">Rushal Bangar</span>
+          </div>
+          <div class="footer-socials">
+            <a href="mailto:rushalbangar19@gmail.com" class="social-link" title="Email: rushalbangar19@gmail.com">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+            <a href="https://github.com/RushalBangar" target="_blank" class="social-link" title="GitHub Profile">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/rushal-bangar-395a64385/" target="_blank" class="social-link" title="LinkedIn Profile">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://x.com/RushalBangar" target="_blank" class="social-link" title="Twitter / X Profile">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==========================================================================
+       SIDEBAR NOTEBOOKLM AI EXPLAIN DRAWER
+       ========================================================================== -->
+  <div class="ai-drawer-overlay" id="drawer-overlay"></div>
+  
+  <div class="ai-explain-drawer" id="drawer-element">
+    <div class="drawer-header">
+      <div class="drawer-title-wrap">
+        <div class="drawer-bot-icon">
+          <!-- AI Bot SVG -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </div>
+        <div>
+          <h3 class="drawer-title">EduSphere AI</h3>
+          <span class="drawer-subtitle">Dynamic Explanation Partner</span>
+        </div>
+      </div>
+      
+      <button class="close-drawer-btn" id="drawer-close-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Active Chat Flow Container -->
+    <div class="chat-container" id="drawer-chat-container">
+      <!-- Chat bubbles loaded dynamically via JavaScript -->
+    </div>
+
+    <!-- Chat input bar -->
+    <div class="drawer-footer">
+      <form id="drawer-chat-form">
+        <div class="chat-input-wrapper">
+          <input type="text" class="chat-input" id="drawer-chat-input" placeholder="Ask follow up questions about this topic..." autocomplete="off">
+          <button type="submit" class="chat-send-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       START CONFIRMATION DIALOG MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-content">
+      <div class="modal-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+      <h3 class="modal-title" id="confirm-deck-title">Start Studying Chapter?</h3>
+      <p class="modal-desc" id="confirm-deck-details">
+        You are about to launch the flashcard study deck for IoT Sensors. This deck contains 5 interactive cards.
+      </p>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" id="confirm-cancel-btn">Cancel</button>
+        <button class="modal-btn start" id="confirm-start-btn">Start Flashcards</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FULLSCREEN IMAGE LIGHTBOX MODAL
+       ========================================================================== -->
+  <div class="lightbox-overlay" id="lightbox-modal">
+    <button class="lightbox-close-btn" id="lightbox-close" title="Close reference sheet">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="lightbox-content">
+      <img src="" id="lightbox-img" alt="Reference Map View">
+      <div class="lightbox-caption" id="lightbox-title">Chapter Reference Map</div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

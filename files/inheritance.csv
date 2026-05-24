@@ -1,0 +1,84 @@
+"In Object-Oriented Programming, what mechanism allows one class to acquire the properties and behaviors of another class?",Inheritance
+What are the two primary components of a class that are typically inherited in C++?,Data members and member functions
+"In the context of inheritance, what is the alternative name for the 'parent' class?",Base class
+"In the context of inheritance, what is the alternative name for the 'child' class?",Derived class
+What is the primary benefit of using inheritance in software development?,Code reusability
+What is the general syntax for declaring a derived class in C++?,class DerivedClassName : visibility_mode BaseClassName { };
+"In C++, which keyword is used to indicate that a member is accessible only within its own class?",private
+Which C++ access specifier allows members to be accessed within their own class and by immediately derived classes?,protected
+Which access specifier makes members accessible from any part of the program?,public
+What is the default visibility mode in C++ if none is specified during inheritance?,private
+Which type of base class members are never inherited by a derived class?,private members
+"If a base class has a public member and the inheritance mode is public, what is the resulting visibility in the derived class?",public
+"If a base class has a public member and the inheritance mode is private, what is the resulting visibility in the derived class?",private
+"If a base class has a public member and the inheritance mode is protected, what is the resulting visibility in the derived class?",protected
+"If a base class has a protected member and the inheritance mode is public, what is the resulting visibility in the derived class?",protected
+"If a base class has a protected member and the inheritance mode is private, what is the resulting visibility in the derived class?",private
+"If a base class has a protected member and the inheritance mode is protected, what is the resulting visibility in the derived class?",protected
+How many types of inheritance are supported in C++?,Five
+What type of inheritance involves a single sub-class derived from a single super-class?,Single inheritance
+What type of inheritance is characterized by a chain where a class is derived from another derived class?,Multilevel inheritance
+Which inheritance type allows a single derived class to inherit from two or more base classes?,Multiple inheritance
+What term describes a combination of two or more types of inheritance within a single program?,Hybrid inheritance
+What type of inheritance involves multiple derived classes inheriting from a single base class?,Hierarchical inheritance
+"In multilevel inheritance, if Class C inherits from Class B, and Class B inherits from Class A, which class's members does Class C indirectly acquire?",Class A
+What problem arises in multiple inheritance when a child class inherits functions with the same name from different parents?,Naming problem (ambiguity)
+How can a programmer resolve naming ambiguity in multiple inheritance within a child class function?,By using the scope resolution operator (::)
+"In the 'Diamond Problem', how many copies of the top-most base class members does the bottom-most derived class receive without special keywords?",Two
+What feature in C++ is used to ensure that only one copy of a base class's members is inherited in a diamond-shaped hierarchy?,Virtual base classes
+What is a pointer in C++ programming?,A variable that stores the memory address of another variable.
+"In C++, what does the address-of operator ($\&$) do?",It retrieves the memory address of a variable.
+What is the purpose of the indirection operator ($*$) when used with a pointer variable?,To access the value stored at the memory address the pointer holds.
+What is the typical numerical representation used for memory addresses in C++?,Hexadecimal
+How is a pointer to an integer declared in C++ syntax?,int $*p;$
+Which pointer type is used to store the address of an object?,Pointer to object
+What operator is used to access class members when using an object pointer instead of an object name?,$\rightarrow$ (arrow operator)
+What is the keyword 'this' in C++ used for?,It refers to the current instance (object) of the class.
+"In a constructor, how can you distinguish between a parameter and a data member if they share the same name?",By using the this $\rightarrow$ pointer for the data member.
+"If a base class pointer points to a derived class object, which class's version of a non-virtual function will be called by default?",Base class
+What is a virtual function in C++?,A member function in a base class that is redefined in a derived class to enable dynamic linkage.
+What does the term 'late binding' (or dynamic linkage) refer to in virtual functions?,The selection of the function to execute at runtime based on the object type.
+Where must a virtual function be initially defined to enable polymorphism?,In the base class
+Can a virtual function be declared as a static member of a class?,No
+Can a class have a virtual constructor in C++?,No
+Is it possible to have a virtual destructor in a C++ class?,Yes
+What is the prototype syntax for a pure virtual function?,virtual void functionName() = 0;
+What is a class containing at least one pure virtual function called?,Abstract base class
+Can you create an object directly from an abstract base class?,No
+What is the main objective of a pure virtual function in a base class?,To provide a template or trait that derived classes must implement.
+What are the two standard C++ functions used for dynamic memory allocation?,malloc() and calloc()
+Which dynamic memory allocation function initializes the allocated memory to zero?,calloc()
+What does the malloc() function return as a default value if it fails or before initialization?,Garbage value
+"If you have a pointer $p$ and write $*p = *p + 1$, what are you modifying?",The value stored at the address $p$ points to.
+Which operator is used to create an object dynamically in C++?,new
+What is the resulting visibility of a protected base member if the inheritance is private?,private
+Which inheritance type describes the relationship: Class Vehicle $\rightarrow$ Class FourWheeler $\rightarrow$ Class Car?,Multilevel inheritance
+"Which inheritance type describes the relationship: Class Animal $\rightarrow$ (Class Dog, Class Cat, Class Cow)?",Hierarchical inheritance
+"In the syntax 'class B : virtual public A', what is the role of 'virtual'?",It defines A as a virtual base class to prevent duplicate inheritance in a diamond structure.
+What happens to the base class constructor when an object of a derived class is created?,"It is called first, followed by the derived class constructor."
+Why is the use of pointers considered efficient for passing large structures like arrays to functions?,It saves memory by passing addresses instead of copying the entire data set.
+What is a 'null pointer' in C++?,A pointer that does not point to any memory location (value is 0 or NULL).
+What is a 'wild pointer'?,A pointer that has been declared but not yet initialized to a specific memory address.
+How can a single function in a base class be made to exhibit different behaviors for different derived objects at runtime?,By declaring it as a virtual function.
+"In the context of pointers, what does 'dereferencing' mean?",Accessing the data stored at the memory address held by the pointer.
+What error occurs if a programmer tries to instantiate an object of a class that has an undefined pure virtual function?,Compilation error (cannot instantiate abstract class)
+Which keyword must precede the normal declaration of a function to make it virtual?,virtual
+"If a base class pointer points to a derived object and calls a virtual function, which class's function executes?",Derived class
+"In multiple inheritance, how is the list of base classes separated in the derived class header?",By commas
+"Which inheritance type represents a 'one parent, multiple children' structure?",Hierarchical inheritance
+What is the size of a pointer variable usually dependent on?,"The system architecture (e.g., 32-bit or 64-bit)"
+What is the purpose of the scope resolution operator in a multiple inheritance example like 'A::show();'?,To specify which base class's version of the 'show' function to call.
+How does inheritance affect the total number of lines of code required for a project?,It reduces it by allowing reuse of existing base class members.
+Which access specifier provides the highest level of data hiding?,private
+Can a friend function be made virtual in C++?,"Yes, they can be friends of another class."
+What happens to a public member of a base class when inherited via 'protected' inheritance?,It becomes protected in the derived class.
+Which pointer always points to the object that invoked the member function?,The 'this' pointer
+What is 'early binding' compared to 'late binding'?,"Early binding happens at compile time, while late binding happens at runtime."
+What operator symbol represents 'address of'?,$\&$
+What operator symbol represents 'value at address' (indirection)?,$*$
+"In a diamond inheritance structure (A is base to B and C; B and C are base to D), how many times is A's constructor called if B and C are NOT virtual base classes?",Two times
+Which inheritance type is essentially a 'multiple parent' model for a single child?,Multiple inheritance
+Which inheritance mode is most common for general 'is-a' relationships where access needs to be preserved?,public
+Is it possible for a derived class to add its own new data members and functions in addition to inherited ones?,Yes
+What is the keyword used to declare a function that has no definition in the base class and must be overridden?,virtual (specifically as a pure virtual function)
+"In C++, can a class inherit from more than two classes simultaneously?",Yes (Multiple Inheritance)

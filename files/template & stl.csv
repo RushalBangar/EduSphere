@@ -1,0 +1,55 @@
+"In C++ programming, what is a template?",A template is a blueprint or frame for creating functions or classes that can work with any data type.
+What are the two primary ways to use templates in C++?,Templates are used as Function Templates and Class Templates.
+What is another name for a 'Function Template'?,A function template is also known as a generic function.
+What is another name for a 'Class Template'?,A class template is also known as a generic class.
+The type of programming where one code block works for different data types is called _____ programming.,Generic
+What is the primary benefit of using templates regarding code maintenance?,Templates eliminate code duplication by allowing one version of a function or class to handle multiple data types.
+"In the syntax `template <class T>`, what does the term `T` represent?",It is a placeholder name for the actual data type that will be used by the function or class.
+Which keyword is used in a template declaration to specify a generic type?,The keyword `class` or `typename` is used to specify a generic type.
+What determines the actual data type that a function template operates on during execution?,The data type is determined by the parameters passed to the function.
+How are multiple placeholders separated in a function template with multiple parameters?,"Multiple placeholders are separated by commas within the angle brackets, such as `template <class T1, class T2>`."
+How is a class template instantiated in C++ to create an object?,It is instantiated using the syntax `class_name <type> object_name;`.
+What is a 'Member Function Template'?,"It is a member function of a class that is itself templated, allowing it to accept different data types regardless of the class type."
+What is 'Exception Handling' in C++?,It is a process used to handle runtime errors to maintain normal application flow and avoid abnormal termination.
+What defines an 'Exception' in C++?,An exception is an unexpected event or object thrown during runtime that disrupts the normal program flow.
+What happens if an exception is thrown but not handled by the program?,The program prints an exception message and terminates abnormally.
+Which keyword is used to enclose a block of code that might throw an exception?,The `try` keyword is used to enclose code that might generate an exception.
+Which block is intended to handle an error and execute corrective actions after an exception is caught?,The `catch` block is used to handle the exception condition.
+Which keyword is used to explicitly signal the occurrence of an exception?,The `throw` statement is used to signal or generate an exception.
+How does the program decide which `catch` block to execute when an exception is thrown?,It finds the matching `catch` block based on the data type of the thrown value.
+What are the three types of values that can be thrown as an exception in C++?,"Exceptions can be built-in types, standard exceptions, or custom exceptions."
+Why is throwing objects of classes considered a 'better method' than throwing built-in types like integers?,Throwing objects allows for more descriptive error messages and avoids the confusion of manually mapping numbers to error meanings.
+From which base class are all standard C++ exceptions derived?,They are derived from the `std::exception` class.
+Which header file contains the definition of standard C++ exception classes?,The `<stdexcept>` header file contains these definitions.
+What is the purpose of the `what()` function in the `std::exception` class?,It returns a C-style character string describing the error in text form.
+When should a programmer create a 'Custom Exception'?,Custom exceptions should be created when standard exceptions are insufficient to show a meaningful error message for a specific program requirement.
+How do you create a custom exception class in C++?,By creating a new class that inherits from the `std::exception` class.
+What does 'Re-throwing' an exception mean?,Re-throwing means catching an exception in a `catch` block and then throwing that same exception again to be handled by another block.
+What is the syntax to re-throw the currently caught exception?,The syntax is simply the keyword `throw;` without any arguments.
+What is the difference between `throw;` and `throw e;` in a catch block?,"The statement `throw;` re-throws the original exception object, while `throw e;` throws a copy of the exception, which might lose original information."
+What does the acronym 'STL' stand for in C++?,STL stands for Standard Template Library.
+What are the two key components of the STL?,The key components are Containers and Algorithms.
+What is the primary purpose of a 'Container' in the STL?,A container is used for collecting and storing data.
+List three examples of 'Sequence Containers' in the STL.,"Three examples are `vector`, `list`, and `deque`."
+List three examples of 'Associative Containers' in the STL.,"Three examples are `set`, `map`, and `multiset`."
+Which container is described as a dynamic array that can grow or shrink automatically?,The `vector` container is a dynamic array.
+How is the `list` container in the STL implemented internally?,It is implemented using a doubly linked list.
+Which member functions are used to add elements to the beginning and end of a `deque`?,The functions `push_front()` and `push_back()` are used.
+What is the defining characteristic of a `set` container in the STL?,A `set` stores only unique elements in a sorted order.
+How does a `multiset` differ from a `set`?,"Unlike a `set`, a `multiset` allows for the storage of duplicate elements."
+What data structure does a `map` container store?,A `map` stores elements as key-value pairs.
+"In the STL, what is an 'Algorithm'?",An algorithm is a step-by-step procedure or set of instructions used to solve a problem or perform tasks like sorting and searching.
+Which STL algorithm is used to arrange elements in ascending order?,The `sort()` algorithm is used for this purpose.
+What are the first two parameters passed to the `std::sort()` function?,The first two parameters are the starting position and the ending position of the range to be sorted.
+Which STL algorithm is used to search for a specific element within a range?,The `find()` algorithm is used to search for an element.
+Which STL algorithm determines how many times a specific element occurs in a collection?,The `count()` algorithm performs this task.
+Which STL algorithm is used to reverse the order of elements in a range?,The `reverse()` algorithm is used to reverse element order.
+Concept: logic_error,"Definition: A standard exception category representing errors in the internal logic of the program, such as invalid arguments."
+Concept: runtime_error,"Definition: A standard exception category representing errors that can only be detected during program execution, such as overflow errors."
+"In the context of standard exceptions, what does `out_of_range` represent?",It is an exception thrown when an attempt is made to access an index that does not exist in a container like a vector.
+"To use the `std::vector` container, which header file must be included?",The `<vector>` header file must be included.
+"What is the output of `std::count(arr, arr+5, 10)` if the array `arr` contains `{10, 20, 10, 30, 10}`?",The output is 3.
+Which keyword is used to handle multiple types of exceptions caught from the same `try` block?,"Multiple `catch` blocks are used, each specifying a different exception data type."
+Why is exception handling considered advantageous for 'normal flow'?,It ensures that the rest of the code is executed even if an error occurs in one part of the application.
+"In the STL, `stack`, `queue`, and `priority_queue` are classified as Container _____.",Adaptors
+What is the purpose of generic programming in C++?,It allows writing code in a generalized form that can be applied to any data type.

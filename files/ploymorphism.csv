@@ -1,0 +1,65 @@
+What is the etymological meaning of the term 'Polymorphism'?,It is derived from 'poly' (meaning many) and 'morphism' (meaning forms).
+How is 'Polymorphism' defined in the context of Object-Oriented Programming?,"The ability of a single function, operator, or object to behave differently based on the context."
+Identify four primary benefits of using Polymorphism in programming.,"Increased code flexibility, improved code reusability, easier maintenance/extension, and single-interface usage for different data types."
+Polymorphism in C++ is mainly divided into which two categories?,Compile Time Polymorphism and Run Time Polymorphism.
+What are two alternative names for Compile Time Polymorphism?,Early binding and static polymorphism.
+Which two mechanisms are used to achieve Compile Time Polymorphism?,Function overloading and operator overloading.
+How is Run Time Polymorphism implemented in C++?,Through function overriding using virtual functions.
+What is the defining characteristic of 'Function Overloading'?,Multiple functions having the same name but different parameters within the same scope.
+"In function overloading, parameters can differ in which three ways?","The number of arguments, the type of arguments, or the order of arguments."
+True or False: Function overloading can be achieved solely by changing the return type of a function.,False; functions must have different parameter signatures to be overloaded.
+What is 'Operator Overloading'?,The process of assigning additional meanings to a C++ operator so it can work with user-defined data types (objects).
+What is the general syntax for defining an operator function?,$return\_type\ operator\ op(arg\_list) \{ \dots \}$
+Which keyword is essential when defining a function to overload an operator?,The $operator$ keyword.
+List four C++ operators that cannot be overloaded.,"Dot operator ($.$), scope resolution ($::$), conditional ($?:$), and $sizeof()$."
+What is a 'Unary Operator'?,"An operator that operates on only one operand, such as $++$, $--$, or negation ($-$)."
+What is a 'Binary Operator'?,"An operator that works with two operands, such as $+$, $-$, and $*$."
+"When overloading a unary operator as a member function, how many arguments are passed to the operator function?",Zero arguments.
+How many arguments does a unary operator function require if it is implemented as a $friend$ function?,One argument.
+"When overloading a binary operator as a member function, why is only one argument passed?","The left-side object implicitly calls the function, and the right-side object is passed as the argument."
+How many arguments are required when overloading a binary operator using a $friend$ function?,Two arguments.
+Why is a $friend$ function often used for operator overloading?,It allows the operator function to access the private data members of the class while remaining outside the class scope.
+"In the expression $c3 = c1 + c2$ where $c1$ and $c2$ are objects, what does the $+$ sign represent?",It represents a call to an overloaded operator function that defines how two objects are added.
+"In C++, which header file is required to perform advanced string operations using operators?",The $<string>$ header.
+Which operator is typically overloaded to perform string concatenation (joining two strings)?,The plus ($+$) operator.
+What is the purpose of overloading the subscript operator ($[]$) for a string class?,To access individual characters of a string using a zero-based index.
+Which operators are used for stream insertion and extraction in C++?,Insertion ($<<$) and extraction ($>>$).
+"When using string comparison operators like $<$ or $>$, what logic is used to determine the result?",Dictionary (lexicographical) order.
+What are the three main types of type conversions discussed in the material?,"Basic to Class, Class to Basic, and One Class to Another Class."
+How is 'Basic to Class' type conversion typically achieved?,By using a constructor that takes the basic type as an argument.
+Which mechanism is used to perform 'Class to Basic' data type conversion?,"A casting operator function, specifically $operator\ basic\_type()$."
+Why can a constructor NOT be used for Class to Basic conversion?,"Constructors do not have return types and are used to build objects, not extract values from them."
+What is a constraint when using 'one class to another class' conversion?,It must be a user-defined conversion that handles data transformation between two different class formats.
+Rule: Only _____ operators can be overloaded; you cannot create entirely new operators like $@@$.,existing
+"True or False: When overloading an operator, you must ensure at least one operand is a user-defined class object.",True; you cannot overload operators for purely built-in primitive types.
+Why is it forbidden to change the 'basic meaning' of an operator during overloading?,"To maintain code readability and prevent confusing logic, such as using $+$ to perform subtraction."
+True or False: The syntax (precedence and associativity) of an operator can be changed during overloading.,False; the syntax must remain the same.
+"Binary arithmetic operators such as $+$, $-$, and $*$ must return a _____ when overloaded.",value (or new object)
+"In a member function overloading a binary operator, which operand must be an object of the relevant class?",The left-hand operand.
+"What is the function of $getline(cin, str)$ in a custom string class?","To input a full sentence, including spaces, into a string object."
+"When converting $Time\ T1 = 120$ (where 120 is an integer), which class member handles the assignment?","A parameterized constructor, such as $Time(int\ k)$."
+What is 'Automatic Type Conversion'?,Conversion applied automatically by the compiler on operands of primitive types involved in an expression.
+"In the assignment $int\ y = n$ where $n$ is a $float$, what happens to the fractional part of $n$?",It is truncated.
+Why is it necessary to define operator functions for user-defined types involved in expressions?,Because the compiler cannot perform automatic type conversion on user-defined types.
+What is the return type of a casting operator function like $operator\ int()$?,It does not explicitly specify a return type in its declaration because the name of the operator implies the return type.
+"In a $Complex$ class adding two objects via a $friend$ function, what are the parameters of the function signature?","$Complex\ operator+(Complex\ &c1, Complex\ &c2)$"
+What is the primary purpose of 'One Class to Another Class' conversion?,"Data transformation, such as converting a $Time$ object (hours/minutes) into a $Minute$ object (total minutes)."
+"To allow a $Minute$ object to be initialized by a $Time$ object ($m1 = t1$), which constructor is needed in the $Minute$ class?",A constructor that takes a $Time$ object as an argument ($Minute(Time\ t)$).
+Which string function is used to copy the contents of one character array to another in C style?,$strcpy()$
+Which string function is used to join two character arrays in C style?,$strcat()$
+What does the 'prefix' version of $++$ signify in operator overloading code?,The operator is applied before the value is used in an expression ($++n$).
+"In the notes' example of $Number$ class, what code updates the member $x$ during prefix increment overloading?",$++x;$
+"In operator overloading, can we change the number of operands an operator takes?",No; unary must remain unary and binary must remain binary.
+"What is the output of the $Complex$ addition example if $c1 = (3, 4)$ and $c2 = (1, 2)$?",$4 + 6i$
+Identify the operator used for 'stream insertion'.,$<<$
+Identify the operator used for 'stream extraction'.,$>>$
+Is the $compare()$ function an operator in C++?,"No, it is a member function, although it performs a task similar to relational operators."
+What does $a.compare(b)$ return if string $a$ is less than string $b$?,A value less than 0 ($< 0$).
+What does $a.compare(b)$ return if string $a$ is equal to string $b$?,0
+"In 'Basic to Class' conversion, a constructor is used to build a _____ object from an $int$ array.",vector
+"In the $Time$ to $int$ conversion example, what does $operator\ int()$ return?",The total number of minutes ($hr * 60 + min$).
+"In C++, strings were traditionally handled using _____ arrays or pointers before the $string$ class.",character ($char$)
+"When a binary operator is overloaded as a member function, the left-hand operand is the object that _____.",invokes the function
+What is the primary difference between Compile Time and Run Time polymorphism regarding when the function call is linked?,"In Compile Time, it is linked during compilation; in Run Time, it is linked during execution."
+How do you distinguish between two functions with the same name if their return types are different but their parameters are identical?,You cannot distinguish them; this will result in a compilation error because return type alone is not enough for overloading.
+"In the $Distance$ addition example, what is the output when adding $10$ meters and $20$ meters?",$Distance = 30\ meters$

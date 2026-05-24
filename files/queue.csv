@@ -1,0 +1,62 @@
+What type of data structure is a queue based on its arrangement of elements?,Linear data structure.
+The queue principle which ensures that the element inserted first is the one removed first is abbreviated as _____.,"FIFO (First In, First Out)."
+"In a queue, at which specific end does the insertion of elements take place?",Rear.
+"In a queue, at which specific end does the deletion of elements take place?",Front.
+Operation: Enqueue,Adds an element to the rear of the queue.
+Operation: Dequeue,Removes and returns the element from the front of the queue.
+How does a queue differ physically from a stack regarding its access points?,"A queue is open at both ends, while a stack is open at only one end."
+Provide a real-world example of a queue as mentioned in the notes.,A single-line one-way road where the first vehicle entering is the first to exit.
+How do online ticket booking websites like BookMyShow utilize queues?,To manage user requests in the order they are received.
+Concept: Queue as an Abstract Data Type (ADT),A logical model that defines what operations can be performed on a queue without specifying their implementation.
+"In a queue ADT, what does the 'Front' pointer or index track?",The start of the queue where deletion occurs.
+"In a queue ADT, what does the 'Rear' pointer or index track?",The end of the queue where insertion occurs.
+What term defines the maximum number of elements a queue can store?,Capacity.
+"Before performing an enqueue operation, which condition must be checked to prevent errors?",Overflow (whether the queue is full).
+"Before performing a dequeue operation, which condition must be checked to prevent errors?",Underflow (whether the queue is empty).
+What is the purpose of the `peek()` or `front()` operation?,To return the value of the front element without removing it.
+What is the return data type of the `isEmpty()` and `isFull()` operations?,Boolean (true or false).
+Why is a queue described as having 'Restricted deletion'?,Deletion is strictly performed only at the front end.
+Why is a queue described as having 'Restricted insertion'?,Insertion is strictly performed only at the rear end.
+Does a standard queue allow 'Random Access' to elements in the middle?,"No, you cannot remove or access items from the middle."
+"In an array-based implementation of a queue, what are the initial values of `front` and `rear` to indicate an empty state?",$-1$.
+"When the very first element is enqueued into an empty array-based queue, to what value is the `front` pointer set?",$0$.
+"In a linear queue using an array, if the `front` index becomes greater than the `rear` index, what does this indicate?",The queue is empty again.
+What is the primary limitation of a linear queue implemented with a fixed-size array?,"Space at the beginning cannot be reused once the rear reaches the end, leading to memory wastage."
+Which specific data structure can solve the 'memory wastage' problem found in simple linear queues?,Circular queue.
+"In a linked list implementation of a queue, what two parts does each node contain?",The data and a pointer to the next node.
+Where is the memory for a new node allocated during a linked list enqueue operation?,Heap memory.
+How are the `front` and `rear` pointers initialized in a linked list implementation?,They are both set to NULL.
+"During a linked list dequeue operation, why is a temporary pointer (`temp`) used?",To store the location of the front node so it can be deallocated after the front pointer moves.
+How does the size limit of a linked list queue compare to an array-based queue?,A linked list queue has no fixed size limit (unlimited space) and can keep adding elements as long as memory is available.
+Why is deletion considered more efficient in a linked list queue compared to a standard array?,You only need to update the front pointer rather than shifting elements in contiguous memory.
+List the four main types of queues mentioned in the notes.,"Linear Queue, Circular Queue, Double-Ended Queue (Deque), and Priority Queue."
+Define a Circular Queue.,An extended version of a regular queue where the last element is connected to the first element to form a circle-like structure.
+Which issue in linear queues does the Circular Queue specifically resolve?,False overflow (when space is available at the front but the rear is at the last index).
+Name an application of a Circular Queue involving time-based cycles.,Traffic light control systems (Red $\rightarrow$ Green $\rightarrow$ Yellow $\rightarrow$ repeat).
+How do turn-based multiplayer games utilize the Circular Queue structure?,To manage players taking turns in a fixed order that repeats.
+Concept: Deque (Double-Ended Queue),A linear data structure that allows insertion and deletion of elements from both the front and rear ends.
+What is the key difference between a Deque and a standard Queue?,"A Deque provides flexibility to add or remove elements at both ends, whereas a standard queue is restricted to one end for each."
+Which operation in a Deque removes an element from the rear end?,`deleteRear()`.
+Which operation in a Deque inserts an element at the front end?,`insertFront()`.
+What is an 'Input Restricted Deque'?,"A deque where insertion is allowed only at the rear, but deletion is allowed at both ends."
+What is an 'Output Restricted Deque'?,"A deque where deletion is allowed only at the front, but insertion is allowed at both ends."
+How is a Deque used in 'Palindrome Checking'?,Characters are compared from both the front and rear to see if the word is the same from both sides.
+Provide a real-world example of a Deque structure.,A bus with two doors (passengers can enter or exit from either door).
+Concept: Priority Queue,"A special type of queue where each element is associated with a priority value, and elements are served based on that priority."
+"In a priority queue, if two elements have the same priority, how are they served?",According to their order in the queue (FIFO).
+"In an Ascending Priority Queue, which element is deleted first?",The element with the smallest value (Smallest Value = Higher Priority).
+"In a Descending Priority Queue, which element is deleted first?",The element with the largest value (Larger Value = Higher Priority).
+How is the queue data structure applied in Operating Systems for CPU scheduling?,Processes waiting for execution are stored in a queue and executed in the order they arrive.
+How do message queues facilitate communication between processes?,"They manage tasks and ensure reliable, ordered communication between different systems or servers."
+"In an array implementation, if the queue is full, the `rear` pointer has reached the _____.",Last available slot.
+A queue is open at _____ ends.,Both.
+"When a node is deleted in a linked list queue, the memory is _____ to prevent leaks.",Deallocated.
+What is the main disadvantage of a Circular Queue compared to a Linear Queue?,It has a more complex implementation and can be harder for beginners to understand.
+What is the main advantage of the 'No wasted space' property in linked list queues?,"You only create a node ('seat') when someone actually joins, using almost zero memory when empty."
+"In a Priority Queue with elements $\{25, 60, 73, 10, 40\}$ where the highest value has highest priority, what is the first element processed?",$73$.
+"In an Ascending Priority Queue with elements $\{7, 3, 5\}$, what is the correct order of deletion?","$3, 5, 7$."
+"In a Descending Priority Queue with elements $\{7, 3, 5\}$, what is the correct order of deletion?","$7, 5, 3$."
+Which queue application ensures that print jobs are processed in the order they are received?,Printer Queue.
+What happens to the `rear` pointer during an `enqueue()` operation in an array implementation?,It is incremented before the new element is added.
+"In a linked list queue, if the queue is currently empty, what do both `front` and `rear` point to after the first enqueue?",The newly created node.
+What happens to the `front` pointer during a `dequeue()` operation in an array implementation?,It is incremented to point to the next element.

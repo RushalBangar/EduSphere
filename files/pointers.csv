@@ -1,0 +1,78 @@
+What is the definition of a pointer in C++?,A variable that stores the memory address of another variable.
+"In C++, what does a 'normal variable' hold compared to a pointer?","A normal variable holds direct values, while a pointer holds a memory location."
+What is the syntax for declaring a pointer in C++?,`data_type *pointer_name;`
+"In pointer initialization, which operator is used to retrieve the address of a variable?",The 'address-of' operator (`&`).
+"If `int a = 10;` and `int *p = &a;`, what is the output of `cout << *p;`?",10
+"If `int a = 10;` and `int *p = &a;`, what does `cout << p;` display?",The memory address of variable `a`.
+What is Dynamic Memory Management?,The process of allocating and freeing memory at runtime using pointers and operators like `new` and `delete`.
+What are the two primary operators used for dynamic memory management in C++?,`new` and `delete`.
+Which memory area is used for dynamic memory allocation managed by the programmer?,The Heap.
+Which memory area is used for automatic memory managed by the compiler?,The Stack.
+What is the specific purpose of the `new` operator in C++?,To allocate memory dynamically from the heap at runtime and return its address.
+What is the specific purpose of the `delete` operator in C++?,To free dynamically allocated memory at runtime and prevent memory leaks.
+"In the code `int *p = new int;`, where is the variable `p` stored versus the memory it points to?","The pointer `p` is on the stack, while the allocated `int` is on the heap."
+Name one advantage of dynamic memory management.,Efficient memory usage and flexibility to allocate memory at runtime.
+What is a major disadvantage of improper dynamic memory management?,It may cause memory leaks.
+Compare the speed of dynamic memory vs. static memory.,Dynamic memory is slightly slower than static memory.
+What is a Linked List?,A way to store a collection of items in a sequence where each item is stored in a node that points to the next one.
+What are the two parts of a linked list node?,Data (information being stored) and Next (pointer to the next node).
+What does the `Next` pointer of the last node in a standard Singly Linked List point to?,NULL
+What is 'Sequential Organization' in the context of data storage?,A structure like an array where elements are stored one after another in a fixed order and accessed by index.
+What is 'Linked Organization' in the context of data storage?,"A structure where elements are connected using pointers and are not stored in fixed, contiguous memory."
+"In terms of memory storage, how do sequential and linked organizations differ?",Sequential is stored in contiguous memory; Linked is stored in scattered memory.
+Contrast the 'Size' attribute between sequential and linked organizations.,Sequential has a fixed size; Linked has a dynamic size.
+Contrast the 'Access' method between sequential and linked organizations.,Sequential allows direct access by index; Linked requires sequential access by following links.
+Why is deletion considered easy in a linked organization compared to a sequential one?,"In a linked list you only need to update pointers, whereas in an array you must shift other elements."
+What is a 'Head' in linked list terminology?,"The first node of the linked list, which is essential for accessing the rest of the list."
+What is a 'Tail' in linked list terminology?,"The last node of the linked list, whose pointer usually points to NULL."
+What does the term 'Traversal' mean in linked lists?,The process of visiting each node in the list one by one.
+What are the three primary types of node insertion in a linked list?,"At the beginning, at the end, and at a specific position."
+What does 'Realization of Linked List using arrays' mean?,Implementing a linked list using two arrays (Data and Next) where array indices act as pointers.
+"In an array-based linked list, what value indicates the end of the list (equivalent to NULL)?",-1
+Name the four common types of linked lists.,"Singly, Doubly, Circular, and Doubly Circular linked lists."
+What is the defining characteristic of a Singly Linked List?,A collection of nodes where each node stores data and the address of the next node only.
+In which direction(s) can a Singly Linked List be traversed?,Only in the forward direction.
+Write the C++ structure definition for a node in a Singly Linked List.,`struct node { int data; struct node *next; };`
+List one disadvantage of a Singly Linked List.,Reverse traversal is not possible.
+What is the defining characteristic of a Doubly Linked List?,Each node contains a data part and two pointers: one to the next node and one to the previous node.
+What is an advantage of a Doubly Linked List over a Singly Linked List?,It allows two-way traversal (forward and backward).
+Write the C++ structure definition for a node in a Doubly Linked List.,`struct node { int data; struct node *next; struct node *prev; };`
+What is a disadvantage of a Doubly Linked List regarding memory?,It requires extra memory because each node has an additional pointer.
+What is a Circular Linked List?,A linked list where the last node points back to the first node (Head) instead of pointing to NULL.
+What is a key advantage of a Circular Linked List during traversal?,Traversal can start from any node and still cover the entire list.
+What is a Doubly Circular Linked List?,"A list where every node has two links and the first and last nodes are connected to each other, forming a circle."
+"In a Doubly Circular Linked List, what does the `prev` pointer of the Head node point to?",The Tail (last node).
+What does it mean to treat a Linked List as an Abstract Data Type (ADT)?,"It is defined by the operations you can perform (add, delete, traverse) without specifying implementation details."
+What are the three steps to insert a node at the beginning of a Singly Linked List?,"1. Create new node, 2. Point new node's next to current Head, 3. Update Head to point to the new node."
+What is the time complexity of inserting a node at the beginning of a Singly Linked List?,$O(1)$
+Why is insertion at the beginning the fastest insertion operation in a linked list?,Because it does not require traversing the list.
+"To insert a node at the end of a Singly Linked List, why is the time complexity $O(n)$?",Because you must traverse the entire list to find the last node.
+What are the steps to insert a node at the end of a Singly Linked List?,"1. Create new node (next = NULL), 2. Traverse to find the last node, 3. Update last node's next pointer to the new node."
+What is the time complexity of inserting a node at a specific position in a Singly Linked List?,$O(n)$
+What is the first step when deleting a node from a linked list?,Check if the list is empty (Head == NULL).
+What are the steps to delete a node from the beginning of a Singly Linked List?,"1. Store Head in a temp pointer, 2. Move Head to the next node, 3. Delete the temp pointer node."
+What is the time complexity of deleting the first node in a Singly Linked List?,$O(1)$
+"To delete the last node of a Singly Linked List, how many pointers are typically used during traversal?",Two (temp and prev).
+What is the purpose of the `prev` pointer when deleting the last node of a Singly Linked List?,To store the second-to-last node so its `next` pointer can be set to NULL.
+What is the time complexity of deleting the last node in a Singly Linked List?,$O(n)$
+What is the time complexity of deleting a node at a specific position in a Singly Linked List?,$O(n)$
+How is a pointer created in C++ syntax?,Using the asterisk (`*`) symbol: `data_type *pointer_name;`.
+What is Static Memory Allocation?,"Memory allocated automatically at compile time, typically using the stack."
+"In Static Memory Management, when is the memory automatically removed?",After the program ends.
+Which memory management type requires the programmer to manually free memory?,Dynamic Memory Management.
+What is the syntax to delete a dynamically allocated array `int *arr = new int[5];`?,`delete [] arr;`
+"In an array realization of a linked list, what does `next[i]` store?",The index of the next node in the sequence.
+"In a Doubly Linked List, the `prev` pointer of the first node points to _____.",NULL
+What happens if you lose the 'Head' pointer of a Singly Linked List?,"You cannot access the linked list, leading to loss of data and potential memory leaks."
+What is one common application for a Doubly Linked List?,Music or video playlists.
+What is one common application for a Circular Linked List?,Clock systems or repeating playlists.
+What is an application for a Doubly Circular Linked List?,Navigation systems.
+How does a Doubly Circular Linked List handle the end of the list differently than a DLL?,It has no NULL pointers; traversal is continuous.
+"In the context of Singly Linked Lists, what does 'O(n)' represent for deletion at the end?",The time taken is proportional to the number of nodes because the list must be traversed.
+Which linked list type is most complex in structure?,Doubly Circular Linked List.
+"In dynamic memory allocation, `int *p = new int; *p = 50;`, what is stored at address `p`?",50
+Which linked list type is best when you know you need to traverse backward and want to loop back to the start from the end?,Doubly Circular Linked List.
+What is the purpose of the 'NULL' pointer in linked list nodes?,To indicate there are no more nodes after this point (end of the list).
+Why is 'pointer handling tricky' in Doubly Circular Linked Lists?,Because multiple pointers must be updated correctly during insertion and deletion to maintain the circular structure.
+Compare insertion in a Singly Linked List versus an Array when adding at the front.,SLL insertion is $O(1)$ and efficient; Array insertion is $O(n)$ because it requires shifting all elements.
+What is the syntax for allocating an array of 3 integers dynamically?,`int *arr = new int[3];`
