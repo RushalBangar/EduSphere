@@ -664,7 +664,16 @@ function renderReferenceSheets() {
         </div>
       </div>
       <div class="reference-card-body">
-        <h4 class="reference-card-title">${sheet.title}</h4>
+        <div class="reference-card-header-row">
+          <h4 class="reference-card-title">${sheet.title}</h4>
+          <a href="${imgSrc}" download="${sheet.title}.png" class="reference-download-btn" title="Download Reference Map">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </a>
+        </div>
         <p class="reference-card-desc">${sheet.desc}</p>
       </div>
     `;
@@ -672,6 +681,13 @@ function renderReferenceSheets() {
     card.addEventListener("click", () => {
       openLightbox(imgSrc, sheet.title);
     });
+    
+    const downloadBtn = card.querySelector(".reference-download-btn");
+    if (downloadBtn) {
+      downloadBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Avoid triggering card click (lightbox)
+      });
+    }
     
     container.appendChild(card);
   });
@@ -682,11 +698,18 @@ const lightboxModal = document.getElementById("lightbox-modal");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxTitle = document.getElementById("lightbox-title");
 const lightboxClose = document.getElementById("lightbox-close");
+const lightboxDownloadLink = document.getElementById("lightbox-download-link");
 
 function openLightbox(src, title) {
   if (lightboxModal && lightboxImg && lightboxTitle) {
     lightboxImg.src = src;
     lightboxTitle.textContent = title;
+    
+    if (lightboxDownloadLink) {
+      lightboxDownloadLink.href = src;
+      lightboxDownloadLink.download = `${title}.png`;
+    }
+    
     lightboxModal.classList.add("active");
   }
 }
@@ -702,7 +725,8 @@ if (lightboxClose) {
 }
 if (lightboxModal) {
   lightboxModal.addEventListener("click", (e) => {
-    if (e.target === lightboxModal || e.target.closest(".lightbox-content") === null && e.target !== lightboxImg) {
+    // Dismiss lightbox on background overlay click only
+    if (e.target === lightboxModal || (e.target.closest(".lightbox-content") === null && e.target.closest(".lightbox-actions-top") === null && e.target !== lightboxImg)) {
       closeLightbox();
     }
   });

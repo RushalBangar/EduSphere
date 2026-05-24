@@ -2497,3 +2497,90 @@ body.dark-theme footer {
     width: 100%;
   }
 }
+
+/* Elegant Dynamic Download & Lightbox Action Buttons */
+.reference-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.reference-download-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  text-decoration: none;
+}
+
+.reference-download-btn:hover {
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--accent-purple);
+  border-color: var(--accent-purple);
+  transform: translateY(-1px);
+}
+
+body.dark-theme .reference-download-btn:hover {
+  background: rgba(167, 139, 250, 0.12);
+  color: var(--accent-purple);
+  border-color: var(--accent-purple);
+}
+
+.lightbox-actions-top {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10002;
+}
+
+.lightbox-action-btn-custom {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lightbox-action-btn-custom:hover {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
+}
+
+.lightbox-close-btn {
+  position: static !important; /* Managed by actions bar */
+}
+
+@media (max-width: 600px) {
+  .lightbox-actions-top {
+    top: auto;
+    bottom: 1.5rem;
+    right: 50%;
+    transform: translateX(50%);
+    width: max-content;
+  }
+}
