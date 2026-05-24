@@ -1135,8 +1135,11 @@ function renderSuggestedPrompts() {
 function triggerUserChatInput(text) {
   const activeCard = currentDeckCards[currentCardIndex];
   
+  // Prevent DOM XSS injections by escaping raw HTML tags from user input
+  const safeText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  
   // 1. Push user query
-  chatHistories[activeCard.id].push({ sender: "user", content: text });
+  chatHistories[activeCard.id].push({ sender: "user", content: safeText });
   renderChatBubbles();
 
   // 2. Generate detailed customized AI answers offline
