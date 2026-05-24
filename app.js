@@ -1673,6 +1673,7 @@ function initBackgroundParticles() {
 
   // Draw connections between close particles — Highly optimized distance-squared filtering
   function drawConnections() {
+    if (window.innerWidth < 768) return; // Skip connection lines on mobile to maximize smoothness
     const isDark = document.body.classList.contains("dark-theme");
     const maxDistance = 110;
     const maxDistanceSq = maxDistance * maxDistance;
