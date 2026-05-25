@@ -1725,7 +1725,7 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     loadLocalCSVDecks(); // Dynamically load from files folder in background
     initBackgroundParticles(); // Start the premium interactive background particles
-  }, 400);
+  }, 2000);
 
   // Premium Theme Switcher toggle logic
   const themeToggle = document.getElementById("theme-toggle");
