@@ -1617,12 +1617,13 @@ async function loadLocalCSVDecks() {
     { subject: "iot", chapterId: "iot-ch3", path: "files/appli iot.csv" }
   ];
 
-  for (const mapping of fileMappings) {
+  // Fetch all CSV resources in parallel to maximize dynamic render speeds
+  await Promise.all(fileMappings.map(async (mapping) => {
     try {
       const response = await fetch(mapping.path);
       if (!response.ok) {
         console.warn(`Local file ${mapping.path} could not be loaded dynamically (HTTP status ${response.status}). Using pre-baked fallback cards.`);
-        continue;
+        return;
       }
       
       const csvText = await response.text();
@@ -1649,7 +1650,7 @@ async function loadLocalCSVDecks() {
     } catch (err) {
       console.warn(`Local fetch for ${mapping.path} failed: ${err.message}. Using premium pre-baked cards.`);
     }
-  }
+  }));
   
   // Dynamic curation: remove the last card from all active study decks (both CSV-loaded and fallbacks)
   removeLastCardFromAllDecks();
