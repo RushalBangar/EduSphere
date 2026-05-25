@@ -3414,3 +3414,49 @@ body.dark-theme .reference-download-btn:hover {
     background: rgba(17, 24, 39, 0.96) !important;
   }
 }
+
+/* On-Demand CSV Loader Visual Loading States */
+.subject-card.loading-on-demand {
+  pointer-events: none;
+  position: relative;
+}
+
+.subject-card.loading-on-demand::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 24px;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeInFast 0.25s forwards;
+}
+
+.subject-card.loading-on-demand::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  margin-left: -14px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  z-index: 11;
+  animation: spinOnDemand 0.6s linear infinite;
+}
+
+@keyframes fadeInFast {
+  to { opacity: 1; }
+}
+
+@keyframes spinOnDemand {
+  to { transform: rotate(360deg); }
+}

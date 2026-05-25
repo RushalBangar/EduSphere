@@ -355,6 +355,7 @@ let appDatabase = {
 };
 
 // Application State Variables
+let loadedSubjects = {}; // On-demand dynamic CSV loader tracking state
 let currentSubject = "";
 let currentChapterId = "";
 let currentDeckCards = [];
@@ -512,25 +513,25 @@ function updateDynamicGlowColor(hexColor) {
 // ==========================================================================
 
 // Subject Grid Rendering
+// Subject Grid Rendering (enriched for absolute performance and 0 layout shifts)
 function renderSubjectCards() {
-  const container = document.getElementById("subjects-container");
-  container.innerHTML = ""; // Clear placeholders
-
   Object.keys(appDatabase).forEach(subjectKey => {
     const subject = appDatabase[subjectKey];
     
+    // Select the existing static card from DOM
+    const card = document.querySelector(`.subject-card.${subjectKey}`);
+    if (!card) return;
+
     // Calculate stats
     const chapterCount = subject.chapters.length;
     let cardCount = 0;
     subject.chapters.forEach(ch => { cardCount += ch.cards.length; });
 
-    // Determine specific visual accents, high-fidelity SVGs, and subtitles matching mockup
-    let cssClass = "oops";
-    let graphicSvg = "";
+    // Determine visual subtitles & dynamic SVGs
     let subtitle = "Sleek class design";
+    let graphicSvg = "";
     
     if (subjectKey === "iot") {
-      cssClass = "iot";
       subtitle = "High-fidelity";
       graphicSvg = `
         <svg class="subject-illustration" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -589,7 +590,6 @@ function renderSubjectCards() {
         </svg>
       `;
     } else if (subjectKey === "fds") {
-      cssClass = "fds";
       subtitle = "Beautiful tree";
       graphicSvg = `
         <svg class="subject-illustration" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -692,50 +692,68 @@ function renderSubjectCards() {
       `;
     }
 
-    const card = document.createElement("div");
-    card.className = `subject-card ${cssClass}`;
-    card.setAttribute("data-subject", subjectKey);
-    card.innerHTML = `
-      <div class="subject-card-graphic">${graphicSvg}</div>
-      <div class="subject-card-body">
-        <h2 class="subject-title">${subject.title}</h2>
-        <p class="subject-desc">${subtitle}</p>
-      </div>
-      <div class="subject-meta">
+    // Enrich graphic section
+    const graphicEl = card.querySelector(".subject-card-graphic");
+    if (graphicEl && !graphicEl.querySelector("svg")) {
+      graphicEl.innerHTML = graphicSvg;
+    }
+
+    // Enrich dynamic subtitle
+    const descEl = card.querySelector(".subject-desc");
+    if (descEl) {
+      descEl.textContent = subtitle;
+    }
+
+    // Enrich metadata (chapters & cards counts)
+    const metaEl = card.querySelector(".subject-meta");
+    if (metaEl) {
+      metaEl.innerHTML = `
         <span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
           ${chapterCount} Chapters
         </span>
-        <span>${cardCount} Cards</span>
+        <span class="card-count-badge">${cardCount} Cards</span>
         <div class="arrow-btn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </div>
-      </div>
-    `;
+      `;
+    }
 
-    // 3D Tilt interactive event listeners (pure vanilla mathematical tilt on hover)
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const xc = rect.width / 2;
-      const yc = rect.height / 2;
-      const angleX = (yc - y) / 15; // rotateX scale
-      const angleY = (x - xc) / 15; // rotateY scale
-      
-      card.style.transform = `translateY(-6px) scale(1.01) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-    });
+    // Register event listeners only once to prevent memory leaks and redundant bounds
+    if (!card.dataset.listenersBound) {
+      // 3D Tilt interactive event listeners (pure vanilla mathematical tilt on hover)
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const xc = rect.width / 2;
+        const yc = rect.height / 2;
+        const angleX = (yc - y) / 15; // rotateX scale
+        const angleY = (x - xc) / 15; // rotateY scale
+        
+        card.style.transform = `translateY(-6px) scale(1.01) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      });
 
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
 
-    card.addEventListener("click", () => {
-      currentSubject = subjectKey;
-      navigateToScreen("chapters");
-    });
+      card.addEventListener("click", async () => {
+        currentSubject = subjectKey;
+        // Provide premium visual loading state during on-demand dynamic CSV retrieval
+        card.classList.add("loading-on-demand");
+        try {
+          await ensureSubjectCSVLoaded(subjectKey);
+        } catch (err) {
+          console.error(`Dynamic loading failed for subject ${subjectKey}:`, err);
+        } finally {
+          card.classList.remove("loading-on-demand");
+        }
+        navigateToScreen("chapters");
+      });
 
-    container.appendChild(card);
+      card.dataset.listenersBound = "true";
+    }
   });
 }
 
@@ -1604,21 +1622,37 @@ chaptersBackBtn.addEventListener("click", () => {
 });
 
 // Dynamic Local CSV resource loader
-async function loadLocalCSVDecks() {
-  const fileMappings = [
-    { subject: "fds", chapterId: "fds-ch1", path: "files/pointers.csv" },
-    { subject: "fds", chapterId: "fds-ch2", path: "files/stack.csv" },
-    { subject: "fds", chapterId: "fds-ch3", path: "files/queue.csv" },
-    { subject: "oops", chapterId: "oops-ch1", path: "files/ploymorphism.csv" },
-    { subject: "oops", chapterId: "oops-ch2", path: "files/inheritance.csv" },
-    { subject: "oops", chapterId: "oops-ch3", path: "files/template & stl.csv" },
-    { subject: "iot", chapterId: "iot-ch1", path: "files/m2m.csv" },
-    { subject: "iot", chapterId: "iot-ch2", path: "files/comm pro.csv" },
-    { subject: "iot", chapterId: "iot-ch3", path: "files/appli iot.csv" }
-  ];
+// Dynamic Local CSV resource loader - lazy/on-demand version for absolute zero startup delay
+async function ensureSubjectCSVLoaded(subjectKey) {
+  if (loadedSubjects[subjectKey]) {
+    return; // Already loaded in memory, return immediately
+  }
 
-  // Fetch all CSV resources in parallel to maximize dynamic render speeds
-  await Promise.all(fileMappings.map(async (mapping) => {
+  const fileMappings = {
+    fds: [
+      { chapterId: "fds-ch1", path: "files/pointers.csv" },
+      { chapterId: "fds-ch2", path: "files/stack.csv" },
+      { chapterId: "fds-ch3", path: "files/queue.csv" }
+    ],
+    oops: [
+      { chapterId: "oops-ch1", path: "files/ploymorphism.csv" },
+      { chapterId: "oops-ch2", path: "files/inheritance.csv" },
+      { chapterId: "oops-ch3", path: "files/template & stl.csv" }
+    ],
+    iot: [
+      { chapterId: "iot-ch1", path: "files/m2m.csv" },
+      { chapterId: "iot-ch2", path: "files/comm pro.csv" },
+      { chapterId: "iot-ch3", path: "files/appli iot.csv" }
+    ]
+  };
+
+  const mappings = fileMappings[subjectKey];
+  if (!mappings) return;
+
+  console.log(`On-Demand CSV Loader: Hydrating ${subjectKey} in background...`);
+
+  // Fetch only the 3 CSV files for the active subject in parallel
+  await Promise.all(mappings.map(async (mapping) => {
     try {
       const response = await fetch(mapping.path);
       if (!response.ok) {
@@ -1629,7 +1663,7 @@ async function loadLocalCSVDecks() {
       const csvText = await response.text();
       const rows = parseCSVStringSimple(csvText);
       if (rows && rows.length > 0) {
-        const subject = appDatabase[mapping.subject];
+        const subject = appDatabase[subjectKey];
         if (subject) {
           const chapter = subject.chapters.find(ch => ch.id === mapping.chapterId);
           if (chapter) {
@@ -1637,7 +1671,7 @@ async function loadLocalCSVDecks() {
               const question = row[0] || "";
               const answer = row[1] || "";
               return {
-                id: `${mapping.subject}-${mapping.chapterId}-c-${idx + 1}`,
+                id: `${subjectKey}-${mapping.chapterId}-c-${idx + 1}`,
                 question: question,
                 answer: answer,
                 explanation: `Learn more about **${question}**:\n\n* **Core Answer**: ${answer}\n\n*This card was loaded dynamically from the local resource.*`
@@ -1651,26 +1685,27 @@ async function loadLocalCSVDecks() {
       console.warn(`Local fetch for ${mapping.path} failed: ${err.message}. Using premium pre-baked cards.`);
     }
   }));
-  
-  // Dynamic curation: remove the last card from all active study decks (both CSV-loaded and fallbacks)
-  removeLastCardFromAllDecks();
 
-  // Re-render subjects after dynamic loading finishes
-  renderSubjectCards();
+  // Dynamic curation: remove the last card from all active study decks for this subject
+  removeLastCardFromSubject(subjectKey);
+
+  // Set loaded state to true
+  loadedSubjects[subjectKey] = true;
+
+  // Update global nav badge stats dynamically
+  updateGlobalStatsBadge();
 }
 
-function removeLastCardFromAllDecks() {
-  Object.keys(appDatabase).forEach(subjKey => {
-    const subject = appDatabase[subjKey];
-    if (subject && subject.chapters) {
-      subject.chapters.forEach(chapter => {
-        if (chapter.cards && chapter.cards.length > 0) {
-          const popped = chapter.cards.pop();
-          console.log(`Curating Decks: Removed last card from "${subject.title}" - "${chapter.title}": "${popped.question}"`);
-        }
-      });
-    }
-  });
+function removeLastCardFromSubject(subjectKey) {
+  const subject = appDatabase[subjectKey];
+  if (subject && subject.chapters) {
+    subject.chapters.forEach(chapter => {
+      if (chapter.cards && chapter.cards.length > 0) {
+        const popped = chapter.cards.pop();
+        console.log(`Curating Decks: Removed last card from "${subject.title}" - "${chapter.title}": "${popped.question}"`);
+      }
+    });
+  }
 }
 
 function parseCSVStringSimple(text) {
@@ -1723,7 +1758,6 @@ window.addEventListener("load", () => {
 
   // Defer heavy resources and background animations to free the initial paint thread completely
   setTimeout(() => {
-    loadLocalCSVDecks(); // Dynamically load from files folder in background
     initBackgroundParticles(); // Start the premium interactive background particles
   }, 2000);
 
