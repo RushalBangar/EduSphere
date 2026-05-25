@@ -524,25 +524,183 @@ function renderSubjectCards() {
     let cardCount = 0;
     subject.chapters.forEach(ch => { cardCount += ch.cards.length; });
 
-    // Determine specific visual accents
+    // Determine specific visual accents, high-fidelity SVGs, and subtitles matching mockup
     let cssClass = "oops";
-    let iconSvg = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>`;
+    let graphicSvg = "";
+    let subtitle = "Sleek class design";
     
     if (subjectKey === "iot") {
       cssClass = "iot";
-      iconSvg = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.25A2.25 2.25 0 0 0 14.5 12.25v3.5A2.25 2.25 0 0 0 16.75 18H18M6 10H7.25A2.25 2.25 0 0 1 9.5 12.25v3.5A2.25 2.25 0 0 1 7.25 18H6M10 6h4M12 4v4M12 16v4M10 18h4"/></svg>`;
+      subtitle = "High-fidelity";
+      graphicSvg = `
+        <svg class="subject-illustration" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="iotGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--accent-cyan)" stop-opacity="0.25" />
+              <stop offset="100%" stop-color="var(--accent-cyan)" stop-opacity="0" />
+            </radialGradient>
+            <filter id="neonGlowIot" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <circle cx="160" cy="90" r="70" fill="url(#iotGlow)" />
+          
+          <!-- Connection Lines -->
+          <path d="M160 90 L110 50 H70" stroke="var(--accent-cyan)" stroke-width="2" filter="url(#neonGlowIot)" opacity="0.8" />
+          <path d="M160 90 L110 130 H75" stroke="var(--accent-cyan)" stroke-width="2" />
+          <path d="M160 90 L210 50 H250" stroke="var(--accent-cyan)" stroke-width="2" />
+          <path d="M160 90 L210 130 H245" stroke="var(--accent-cyan)" stroke-width="2" filter="url(#neonGlowIot)" opacity="0.8" />
+          <path d="M160 90 V40" stroke="var(--accent-cyan)" stroke-width="2" stroke-dasharray="4 4" />
+          
+          <!-- Center Pulse -->
+          <circle cx="160" cy="90" r="16" fill="#090d16" stroke="var(--accent-cyan)" stroke-width="2.5" filter="url(#neonGlowIot)" />
+          <circle cx="160" cy="90" r="16" fill="none" stroke="var(--accent-cyan)" stroke-width="1" opacity="0.7">
+            <animate attributeName="r" values="16;28;16" dur="3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.7;0;0.7" dur="3s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="160" cy="90" r="5" fill="var(--accent-cyan)" />
+          
+          <!-- Satellite Nodes -->
+          <circle cx="70" cy="50" r="10" fill="#090d16" stroke="var(--accent-cyan)" stroke-width="2" />
+          <circle cx="70" cy="50" r="4" fill="var(--accent-cyan)" />
+          
+          <circle cx="75" cy="130" r="10" fill="#090d16" stroke="var(--accent-cyan)" stroke-width="2" />
+          <path d="M72 130h6M75 127v6" stroke="var(--accent-cyan)" stroke-width="1.5" />
+          
+          <circle cx="250" cy="50" r="10" fill="#090d16" stroke="var(--accent-cyan)" stroke-width="2" />
+          <path d="M247 50h6" stroke="var(--accent-cyan)" stroke-width="1.5" />
+          
+          <circle cx="245" cy="130" r="10" fill="#090d16" stroke="var(--accent-cyan)" stroke-width="2" />
+          <rect x="242" y="127" width="6" height="6" rx="1" fill="var(--accent-cyan)" />
+          
+          <circle cx="160" cy="40" r="10" fill="#090d16" stroke="var(--accent-cyan)" stroke-width="2" />
+          
+          <!-- Moving light signals -->
+          <circle r="3" fill="#ffffff" filter="url(#neonGlowIot)">
+            <animateMotion path="M160 90 L110 50 H70" dur="2.5s" repeatCount="indefinite" />
+          </circle>
+          <circle r="3" fill="#ffffff" filter="url(#neonGlowIot)">
+            <animateMotion path="M160 90 L210 130 H245" dur="3s" repeatCount="indefinite" />
+          </circle>
+        </svg>
+      `;
     } else if (subjectKey === "fds") {
       cssClass = "fds";
-      iconSvg = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`;
+      subtitle = "Beautiful tree";
+      graphicSvg = `
+        <svg class="subject-illustration" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="fdsGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--accent-magenta)" stop-opacity="0.25" />
+              <stop offset="100%" stop-color="var(--accent-magenta)" stop-opacity="0" />
+            </radialGradient>
+            <filter id="neonGlowFds" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <circle cx="160" cy="90" r="70" fill="url(#fdsGlow)" />
+          
+          <!-- Connections -->
+          <line x1="160" y1="35" x2="105" y2="85" stroke="var(--accent-magenta)" stroke-width="2.5" filter="url(#neonGlowFds)" opacity="0.8" />
+          <line x1="160" y1="35" x2="215" y2="85" stroke="var(--accent-magenta)" stroke-width="2.5" filter="url(#neonGlowFds)" opacity="0.8" />
+          <line x1="105" y1="85" x2="70" y2="135" stroke="var(--accent-magenta)" stroke-width="2" opacity="0.6" />
+          <line x1="105" y1="85" x2="140" y2="135" stroke="var(--accent-magenta)" stroke-width="2" opacity="0.6" />
+          <line x1="215" y1="85" x2="180" y2="135" stroke="var(--accent-magenta)" stroke-width="2" opacity="0.6" />
+          <line x1="215" y1="85" x2="250" y2="135" stroke="var(--accent-magenta)" stroke-width="2" opacity="0.6" />
+          
+          <!-- Nodes -->
+          <!-- Level 0 -->
+          <g class="float-tree-node">
+            <circle cx="160" cy="35" r="14" fill="#090d16" stroke="var(--accent-magenta)" stroke-width="2.5" filter="url(#neonGlowFds)" />
+            <text x="160" y="39" fill="white" font-size="11" font-weight="800" text-anchor="middle" font-family="Outfit">1</text>
+          </g>
+          <!-- Level 1 -->
+          <circle cx="105" cy="85" r="12" fill="#090d16" stroke="var(--accent-magenta)" stroke-width="2" />
+          <text x="105" y="89" fill="white" font-size="10" font-weight="800" text-anchor="middle" font-family="Outfit">0</text>
+          
+          <circle cx="215" cy="85" r="12" fill="#090d16" stroke="var(--accent-magenta)" stroke-width="2" />
+          <text x="215" y="89" fill="white" font-size="10" font-weight="800" text-anchor="middle" font-family="Outfit">1</text>
+          
+          <!-- Level 2 -->
+          <circle cx="70" cy="135" r="10" fill="#090d16" stroke="var(--accent-magenta)" stroke-width="1.5" />
+          <text x="70" y="138" fill="white" font-size="9" font-weight="800" text-anchor="middle" font-family="Outfit">0</text>
+          
+          <circle cx="140" cy="135" r="10" fill="#090d16" stroke="var(--accent-magenta)" stroke-width="1.5" />
+          <text x="140" y="138" fill="white" font-size="9" font-weight="800" text-anchor="middle" font-family="Outfit">1</text>
+          
+          <circle cx="180" cy="135" r="10" fill="#090d16" stroke="var(--accent-magenta)" stroke-width="1.5" />
+          <text x="180" y="138" fill="white" font-size="9" font-weight="800" text-anchor="middle" font-family="Outfit">0</text>
+          
+          <circle cx="250" cy="135" r="10" fill="#090d16" stroke="var(--accent-magenta)" stroke-width="1.5" />
+          <text x="250" y="138" fill="white" font-size="9" font-weight="800" text-anchor="middle" font-family="Outfit">1</text>
+        </svg>
+      `;
+    } else {
+      cssClass = "oops";
+      subtitle = "Sleek class design";
+      graphicSvg = `
+        <svg class="subject-illustration" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="oopGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--accent-purple)" stop-opacity="0.25" />
+              <stop offset="100%" stop-color="var(--accent-purple)" stop-opacity="0" />
+            </radialGradient>
+            <filter id="neonGlowOop" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <circle cx="160" cy="90" r="70" fill="url(#oopGlow)" />
+          
+          <!-- Class Boxes -->
+          <!-- Parent Class -->
+          <g class="float-class-box-1">
+            <rect x="110" y="20" width="100" height="38" rx="6" fill="#090d16" stroke="var(--accent-purple)" stroke-width="2" filter="url(#neonGlowOop)" />
+            <line x1="110" y1="34" x2="210" y2="34" stroke="var(--accent-purple)" stroke-width="1" opacity="0.4" />
+            <text x="160" y="30" fill="white" font-size="9" font-weight="800" text-anchor="middle" font-family="Outfit">Class: Shape</text>
+          </g>
+          
+          <!-- Connections -->
+          <path d="M90 95v-18h140v18" stroke="var(--accent-purple)" stroke-width="1.5" />
+          <path d="M160 58v19" stroke="var(--accent-purple)" stroke-width="1.5" />
+          <polygon points="160,58 156,64 164,64" fill="var(--accent-purple)" />
+          
+          <!-- Child Classes -->
+          <g class="float-class-box-2">
+            <rect x="40" y="95" width="100" height="38" rx="6" fill="#090d16" stroke="var(--accent-purple)" stroke-width="1.5" />
+            <line x1="40" y1="109" x2="140" y2="109" stroke="var(--accent-purple)" stroke-width="1" opacity="0.4" />
+            <text x="90" y="105" fill="white" font-size="8.5" font-weight="800" text-anchor="middle" font-family="Outfit">Circle</text>
+          </g>
+          
+          <g class="float-class-box-3">
+            <rect x="180" y="95" width="100" height="38" rx="6" fill="#090d16" stroke="var(--accent-purple)" stroke-width="1.5" />
+            <line x1="180" y1="109" x2="280" y2="109" stroke="var(--accent-purple)" stroke-width="1" opacity="0.4" />
+            <text x="230" y="105" fill="white" font-size="8.5" font-weight="800" text-anchor="middle" font-family="Outfit">Square</text>
+          </g>
+        </svg>
+      `;
     }
 
     const card = document.createElement("div");
     card.className = `subject-card ${cssClass}`;
     card.setAttribute("data-subject", subjectKey);
     card.innerHTML = `
-      <div class="subject-icon-wrap">${iconSvg}</div>
-      <h2 class="subject-title">${subject.title}</h2>
-      <p class="subject-desc">Master critical fundamentals, interactive concepts, architectures, and implementation patterns inside this comprehensive study deck.</p>
+      <div class="subject-card-graphic">${graphicSvg}</div>
+      <div class="subject-card-body">
+        <h2 class="subject-title">${subject.title}</h2>
+        <p class="subject-desc">${subtitle}</p>
+      </div>
       <div class="subject-meta">
         <span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>

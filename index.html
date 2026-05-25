@@ -148,76 +148,236 @@
            SCREEN 1: SUBJECT DASHBOARD
            ========================================================================== -->
       <section class="screen active" id="screen-subjects">
-        <div class="hero-section">
-          <div class="hero-tag">Intelligent Flashcards. Better Learning. Zero Hassle.</div>
-          <h1 class="hero-title">
-            <span class="slogan-conducts">AI CONDUCTS.</span><br>
-            <span class="slogan-learning">BETTER LEARNING.</span><br>
-            <span class="slogan-grades">BETTER GRADES.</span>
-          </h1>
-          <p class="hero-subtitle">
-            Unlock the power of dynamic 3D study workflows. Choose a custom subject, experience immersive Y-axis flashcard flips, and study with EduSphere's integrated AI explanations.
-          </p>
+        <div class="hero-section hero-two-column">
+          <!-- Left Column: Copywriting & Features List -->
+          <div class="hero-content-left">
+            <div class="hero-brand-badge-wrap">
+              <div class="hero-logo-wrap">
+                <!-- Glowing Monogram Logo -->
+                <svg class="premium-hero-logo-small" width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="logoCyanGlow" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#06b6d4" />
+                      <stop offset="100%" stop-color="#3b82f6" />
+                    </linearGradient>
+                    <linearGradient id="logoPinkGlow" x1="100" y1="100" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#f43f5e" />
+                      <stop offset="100%" stop-color="#ff7eb9" />
+                    </linearGradient>
+                    <filter id="hexNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="6" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  <path d="M50 15 L80 32 L80 68 L50 85 L20 68 L20 32 Z" stroke="url(#logoCyanGlow)" stroke-width="4.5" stroke-linejoin="round" filter="url(#hexNeonGlow)" />
+                  <path d="M50 15 L80 32 L80 68 L50 85 L20 68 L20 32 Z" stroke="url(#logoPinkGlow)" stroke-width="4.5" stroke-linejoin="round" filter="url(#hexNeonGlow)" opacity="0.6" style="mix-blend-mode: screen;" />
+                  <path d="M38 34 H62 V41 H48 V47 H58 V53 H48 V59 H62 V66 H38 Z" fill="white" filter="url(#hexNeonGlow)" />
+                </svg>
+              </div>
+              <span class="hero-badge-capsule">AI-POWERED STUDY PORTAL</span>
+            </div>
+
+            <h1 class="hero-title-premium">
+              <span class="slogan-top">AI CONDUCTS.</span><br>
+              <span class="slogan-mid">BETTER LEARNING.</span><br>
+              <span class="slogan-bottom">BETTER GRADES.</span>
+            </h1>
+
+            <p class="hero-subtitle-tag">
+              Intelligent Flashcards. Better Learning. <span class="zero-hassle">Zero Hassle.</span>
+            </p>
+
+            <!-- Feature Bullet List Capsule Rows (Mockup Style) -->
+            <div class="hero-feature-rows">
+              <div class="feature-capsule-row">
+                <div class="feature-capsule-bullet violet">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <span class="feature-capsule-text">Dynamic 3D Flashcard Engine with Y-axis Flips</span>
+              </div>
+              <div class="feature-capsule-row">
+                <div class="feature-capsule-bullet blue">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <span class="feature-capsule-text">Integrated NotebookLM-Grade AI Explain Drawer</span>
+              </div>
+              <div class="feature-capsule-row">
+                <div class="feature-capsule-bullet purple">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+                </div>
+                <span class="feature-capsule-text">Curated Syllabus for IoT, Data Structures, &amp; OOP</span>
+              </div>
+              <div class="feature-capsule-row">
+                <div class="feature-capsule-bullet cyan">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <span class="feature-capsule-text">Active Recall Metric Analytics &amp; Score Dashboard</span>
+              </div>
+            </div>
+
+            <!-- Start Session Button (Request Demo Style) -->
+            <button class="hero-cta-btn" onclick="document.getElementById('subjects-container').scrollIntoView({behavior: 'smooth'})">
+              <span>Start Study Session</span>
+              <div class="cta-arrow-circle">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </button>
+          </div>
+
+          <!-- Right Column: Interactive Mockup SaaS Panels & Companion Buddy -->
+          <div class="hero-content-right">
+            <!-- Simulated Active Study Session Panel -->
+            <div class="mockup-panel study-in-progress">
+              <div class="mockup-panel-header">
+                <span class="live-dot"></span>
+                <span class="panel-tag">AI Explanation in Progress</span>
+                <span class="timer-badge">28:45</span>
+              </div>
+              <div class="mockup-panel-body">
+                <div class="avatar-illustration-wrap">
+                  <!-- Vector Avatar -->
+                  <svg class="avatar-svg" width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="32" fill="var(--bg-secondary)" />
+                    <!-- Head -->
+                    <circle cx="32" cy="24" r="11" fill="var(--accent-purple)" />
+                    <!-- Body -->
+                    <path d="M16 48 C16 38, 48 38, 48 48 Z" fill="var(--accent-purple)" />
+                  </svg>
+                </div>
+                <div class="panel-question-log">
+                  <div class="ai-speech-bubble">
+                    <span class="speech-tag">AI Explaining...</span>
+                    <p class="speech-text">Dynamic pointer allocation on the Heap vs Stack storage...</p>
+                    <div class="audio-waves">
+                      <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Evaluation Report Panel -->
+            <div class="mockup-panel eval-report-panel">
+              <div class="report-title-row">
+                <span class="report-title">Active Recall Index</span>
+                <span class="report-tag">AI Metrics</span>
+              </div>
+              <div class="report-stats">
+                <div class="circular-score-wrap">
+                  <svg class="circular-score-svg" width="52" height="52" viewBox="0 0 36 36">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(99, 102, 241, 0.1)" stroke-width="3" />
+                    <path class="circle-progress" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--accent-purple)" stroke-width="3.5" stroke-linecap="round" />
+                    <text x="18" y="21.5" class="circle-score-text">4.8</text>
+                  </svg>
+                </div>
+                <div class="report-bars">
+                  <div class="report-bar-row">
+                    <span class="bar-label">Retention</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 95%;"></div></div>
+                  </div>
+                  <div class="report-bar-row">
+                    <span class="bar-label">Accuracy</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 88%;"></div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="stars-row">
+                ★★★★★ <span class="stars-label">Premium Performance</span>
+              </div>
+            </div>
+
+            <!-- Cute white-and-purple robot vector buddy -->
+            <div class="robot-companion-wrap">
+              <svg class="robot-companion" width="130" height="130" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Head -->
+                <rect x="25" y="30" width="50" height="36" rx="18" fill="var(--bg-secondary)" stroke="var(--accent-purple)" stroke-width="4.5" />
+                <!-- Ears -->
+                <circle cx="23" cy="48" r="5" fill="var(--accent-purple)" />
+                <circle cx="77" cy="48" r="5" fill="var(--accent-purple)" />
+                <!-- Eyes Screen -->
+                <rect x="33" y="38" width="34" height="16" rx="8" fill="#090d16" />
+                <!-- Eyes glowing pink/violet -->
+                <circle cx="43" cy="46" r="3.5" fill="var(--accent-purple)">
+                  <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="57" cy="46" r="3.5" fill="var(--accent-purple)">
+                  <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite" />
+                </circle>
+                <!-- Body -->
+                <rect x="35" y="69" width="30" height="24" rx="10" fill="var(--bg-secondary)" stroke="var(--accent-purple)" stroke-width="4.5" />
+                <!-- Robot Antenna -->
+                <line x1="50" y1="30" x2="50" y2="18" stroke="var(--accent-purple)" stroke-width="4" />
+                <circle cx="50" cy="16" r="4.5" fill="var(--accent-purple)" />
+                <!-- Neck -->
+                <rect x="44" y="64" width="12" height="6" rx="2" fill="#cbd5e1" />
+              </svg>
+            </div>
+          </div>
         </div>
 
-        <!-- 3D Card Selection Grid -->
-        <div class="subjects-grid" id="subjects-container">
-          <!-- IoT Card -->
-          <div class="subject-card iot" data-subject="iot">
-            <div class="subject-icon-wrap">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.25A2.25 2.25 0 0 0 14.5 12.25v3.5A2.25 2.25 0 0 0 16.75 18H18M6 10H7.25A2.25 2.25 0 0 1 9.5 12.25v3.5A2.25 2.25 0 0 1 7.25 18H6M10 6h4M12 4v4M12 16v4M10 18h4"/></svg>
-            </div>
-            <h2 class="subject-title">Internet of Things</h2>
-            <p class="subject-desc">
-              Explore embedded networks, sensors, actuator clusters, wireless protocols (MQTT, CoAP), edge computing nodes, and advanced IoT security layers.
-            </p>
-            <div class="subject-meta">
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
-                5 Chapters
-              </span>
-              <div class="arrow-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <!-- 3D Card Selection Grid Wrapper -->
+        <div class="subjects-grid-wrapper">
+          <div class="subjects-grid" id="subjects-container">
+            <!-- IoT Card -->
+            <div class="subject-card iot" data-subject="iot">
+              <div class="subject-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.25A2.25 2.25 0 0 0 14.5 12.25v3.5A2.25 2.25 0 0 0 16.75 18H18M6 10H7.25A2.25 2.25 0 0 1 9.5 12.25v3.5A2.25 2.25 0 0 1 7.25 18H6M10 6h4M12 4v4M12 16v4M10 18h4"/></svg>
+              </div>
+              <h2 class="subject-title">Internet of Things</h2>
+              <p class="subject-desc">
+                Explore embedded networks, sensors, actuator clusters, wireless protocols (MQTT, CoAP), edge computing nodes, and advanced IoT security layers.
+              </p>
+              <div class="subject-meta">
+                <span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
+                  5 Chapters
+                </span>
+                <div class="arrow-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- FDS Card -->
-          <div class="subject-card fds" data-subject="fds">
-            <div class="subject-icon-wrap">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            </div>
-            <h2 class="subject-title">Fundamentals of Data Structures</h2>
-            <p class="subject-desc">
-              Master the algorithmic foundations: dynamic arrays, linked structures, binary search trees, graph algorithms, search heuristics, and memory structures.
-            </p>
-            <div class="subject-meta">
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
-                5 Chapters
-              </span>
-              <div class="arrow-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <!-- FDS Card -->
+            <div class="subject-card fds" data-subject="fds">
+              <div class="subject-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <h2 class="subject-title">Fundamentals of Data Structures</h2>
+              <p class="subject-desc">
+                Master the algorithmic foundations: dynamic arrays, linked structures, binary search trees, graph algorithms, search heuristics, and memory structures.
+              </p>
+              <div class="subject-meta">
+                <span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
+                  5 Chapters
+                </span>
+                <div class="arrow-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- OOPs Card -->
-          <div class="subject-card oops" data-subject="oops">
-            <div class="subject-icon-wrap">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
-            </div>
-            <h2 class="subject-title">Object-Oriented Programming</h2>
-            <p class="subject-desc">
-              Understand professional software patterns: encapsulation borders, dynamic polymorphism, inheritances, interfaces, and complex memory scopes.
-            </p>
-            <div class="subject-meta">
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
-                5 Chapters
-              </span>
-              <div class="arrow-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <!-- OOPs Card -->
+            <div class="subject-card oops" data-subject="oops">
+              <div class="subject-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+              </div>
+              <h2 class="subject-title">Object-Oriented Programming</h2>
+              <p class="subject-desc">
+                Understand professional software patterns: encapsulation borders, dynamic polymorphism, inheritances, interfaces, and complex memory scopes.
+              </p>
+              <div class="subject-meta">
+                <span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1M20 1v21"/></svg>
+                  5 Chapters
+                </span>
+                <div class="arrow-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
               </div>
             </div>
           </div>
