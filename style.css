@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+/* Google Fonts are now loaded efficiently in index.html */
 
 :root {
   --bg-primary: #f8fafc;
@@ -525,6 +525,8 @@ main {
 }
 
 @keyframes screenReveal {
+  0% {
+    opacity: 0;
     transform: translateY(12px);
   }
   100% {
@@ -562,10 +564,11 @@ body.dark-theme::before {
   justify-content: space-between;
   align-items: center;
   gap: 4rem;
-  padding: 4rem 0 3rem 0;
+  padding: 6.5rem 0 3rem 0; /* Generous top padding to completely clear sticky header */
   max-width: 1200px;
-  margin: 0 auto 3rem auto;
+  margin: 1.5rem auto 3rem auto; /* Top margin for premium breathing room from sticky header */
   text-align: left;
+  animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* Maintained beautiful entry animation */
 }
 
 .hero-content-left {
@@ -1240,7 +1243,7 @@ body.dark-theme .subject-card-graphic {
 @media (max-width: 1199px) {
   .hero-two-column {
     gap: 2.5rem;
-    padding: 3rem 0;
+    padding: 5.5rem 0 3rem 0; /* Clear header on tablet/landscape */
   }
   .hero-title-premium {
     font-size: 2.75rem;
@@ -1260,12 +1263,12 @@ body.dark-theme .subject-card-graphic {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1099px) {
   .hero-two-column {
     flex-direction: column;
     text-align: center;
     gap: 3rem;
-    padding: 2.5rem 0;
+    padding: 5rem 0 2.5rem 0; /* Clear header on stacked layouts */
   }
   .hero-content-left {
     align-items: center;
@@ -1283,6 +1286,13 @@ body.dark-theme .subject-card-graphic {
     align-items: center;
     gap: 1.5rem;
     margin-top: 1.5rem;
+  }
+  .subjects-grid,
+  .info-features-grid,
+  .chapters-grid,
+  .reference-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
   .mockup-panel.study-in-progress,
   .mockup-panel.eval-report-panel,
@@ -1322,25 +1332,11 @@ body.dark-theme .subject-card-graphic {
   .subjects-grid-wrapper {
     padding: 2rem 1.25rem;
   }
-  .subjects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
 }
 
 /* ==========================================================================
    1. HERO AND SUBJECTS SCREEN
    ========================================================================== */
-.hero-section {
-  text-align: center;
-  padding: 4.5rem 1rem 3.5rem;
-  margin-bottom: 2.5rem;
-  max-width: 950px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 .hero-tag {
   background: linear-gradient(90deg, rgba(124, 58, 237, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%);
   border: 1px solid rgba(124, 58, 237, 0.18);
@@ -1356,38 +1352,6 @@ body.dark-theme .subject-card-graphic {
   box-shadow: 0 4px 15px rgba(124, 58, 237, 0.05);
 }
 
-.hero-title {
-  font-family: var(--font-heading);
-  font-size: 4.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.04em;
-  color: var(--text-primary);
-}
-
-/* EduSphere Slogan Text highlights */
-.hero-title span.slogan-conducts {
-  color: var(--text-primary);
-}
-.hero-title span.slogan-learning {
-  background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-cyan), var(--accent-purple));
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: slowGradientShift 12s ease infinite;
-}
-.hero-title span.slogan-grades {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-magenta), var(--accent-purple), var(--accent-blue));
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: slowGradientShift 12s ease infinite;
-  animation-delay: -3s; /* Offset animation starting time for rich variance */
-}
-
 @keyframes slowGradientShift {
   0% {
     background-position: 0% 50%;
@@ -1400,19 +1364,10 @@ body.dark-theme .subject-card-graphic {
   }
 }
 
-.hero-subtitle {
-  color: var(--text-secondary);
-  font-size: 1.25rem;
-  max-width: 750px;
-  margin: 0 auto;
-  line-height: 1.65;
-  font-weight: 400;
-}
-
 /* 3D Subject Grid Cards */
 .subjects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 1rem;
   perspective: 1000px;
@@ -1431,7 +1386,7 @@ body.dark-theme .subject-card-graphic {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  min-height: 380px;
+  min-height: 420px;
   box-shadow: var(--box-shadow-premium);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -1682,7 +1637,7 @@ body.dark-theme .subject-card-graphic {
 
 .chapters-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -2724,7 +2679,7 @@ body.dark-theme .chat-input-wrapper {
 
 .info-features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -2983,7 +2938,7 @@ body.dark-theme footer {
 
 .reference-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -3221,9 +3176,12 @@ body.dark-theme footer {
     padding: 1.5rem 1rem;
   }
   
-  .subjects-grid {
+  .subjects-grid,
+  .info-features-grid,
+  .chapters-grid,
+  .reference-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
   
   .subject-card {

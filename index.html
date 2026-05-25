@@ -19,6 +19,11 @@
   <meta name="keywords" content="flashcards, study, data structures, IoT, OOP, AI, EduSphere, 3D learning">
   <meta name="theme-color" content="#7c3aed">
 
+  <!-- Performance: Preconnect to Google Fonts & load directly -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="favicon.svg">
@@ -44,6 +49,7 @@
   <meta name="twitter:description" content="Master Data Structures, IoT, and OOP with immersive 3D flashcards and an integrated AI explanation engine.">
   <meta name="twitter:image" content="https://edusphere2k26.netlify.app/og-image.jpg">
   <meta name="twitter:image:alt" content="EduSphere AI preview card">
+  <link rel="preload" href="style.css" as="style">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -148,7 +154,7 @@
            SCREEN 1: SUBJECT DASHBOARD
            ========================================================================== -->
       <section class="screen active" id="screen-subjects">
-        <div class="hero-section hero-two-column">
+        <div class="hero-two-column">
           <!-- Left Column: Copywriting & Features List -->
           <div class="hero-content-left">
             <div class="hero-brand-badge-wrap">
@@ -745,11 +751,11 @@
       </button>
     </div>
     <div class="lightbox-content">
-      <img src="" id="lightbox-img" alt="Reference Map View">
+      <img src="" id="lightbox-img" alt="Reference Map View" loading="lazy">
       <div class="lightbox-caption" id="lightbox-title">Chapter Reference Map</div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

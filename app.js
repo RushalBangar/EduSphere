@@ -1787,9 +1787,9 @@ function initBackgroundParticles() {
       this.color = colors[Math.floor(Math.random() * colors.length)];
     }
 
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
+    update(timeScale = 1) {
+      this.x += this.speedX * timeScale;
+      this.y += this.speedY * timeScale;
 
       // Mouse interactive push — Optimized distance-squared check to avoid Math.sqrt
       if (mouse.x !== null && mouse.y !== null) {
@@ -1802,8 +1802,8 @@ function initBackgroundParticles() {
           const distance = Math.sqrt(distSq);
           if (distance > 0) {
             const force = (mouse.radius - distance) / mouse.radius;
-            this.x += (dx / distance) * force * 1.5;
-            this.y += (dy / distance) * force * 1.5;
+            this.x += (dx / distance) * force * 1.5 * timeScale;
+            this.y += (dy / distance) * force * 1.5 * timeScale;
           }
         }
       }
@@ -1859,11 +1859,21 @@ function initBackgroundParticles() {
   }
 
   // Animation Loop
-  function animate() {
+  let lastTime = performance.now();
+
+  function animate(currentTime) {
+    if (!currentTime) currentTime = performance.now();
+    let deltaTime = (currentTime - lastTime) / 1000;
+    if (deltaTime > 0.1) deltaTime = 0.1; // Cap delta to prevent huge jumps when tabbing back
+    lastTime = currentTime;
+    
+    // Scale factor relative to 60fps (1 frame = 1/60s)
+    const timeScale = deltaTime * 60;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     particles.forEach(particle => {
-      particle.update();
+      particle.update(timeScale);
       particle.draw();
     });
 
@@ -1871,6 +1881,6 @@ function initBackgroundParticles() {
     animationFrameId = requestAnimationFrame(animate);
   }
   
-  animate();
+  animate(performance.now());
 }
 
